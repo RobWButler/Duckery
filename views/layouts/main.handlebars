@@ -8,7 +8,31 @@
   <title>Home Page</title>
 </head>
 
+
 <body>
+  <div class="jumbotron mb-0">
+    <h1 class="text-center">Duckery</h1>
+    <h3 class="text-center">A developer's best friend</h3>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Duckery</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      {{#if isAuthenticated}}
+      <a class="nav-item nav-link" href="/logout">Logout</a>
+      <a class="nav-item nav-link" href="/profile">Profile</a>
+      {{else}}
+      <a class="nav-item nav-link" href="/">Sign up / Login</a>
+      {{/if}}
+      <a class="nav-item nav-link" href="/createduck">Create Coding Ducky</a>
+      <a class="nav-item nav-link" href="/minigames" tabindex="-1" aria-disabled="true">Mini-games</a>
+      
+    </div>
+  </div>
+</nav>
   {{{body}}}
 </body>
 
