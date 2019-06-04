@@ -1,5 +1,4 @@
 var db = require('../models');
-var expressValidator = require('express-validator');
 var passport = require('passport');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
