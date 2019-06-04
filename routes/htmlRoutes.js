@@ -3,18 +3,23 @@ var expressValidator = require("express-validator");
 var passport = require("passport");
 var bcrypt = require("bcrypt");
 var saltRounds = 10;
+
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    res.render("signup");
+    res.render("home");
     console.log(req.user);
     console.log(req.isAuthenticated());
   });
-
   app.get("/profile", authenticationMiddleware(), function(req, res) {
     res.render("profile");
   });
-
+ app.get("/login", function(req, res){
+    res.render("login")
+ })
+ app.get("/signup", function(req, res){
+  res.render("signup")
+})
   app.post("/login", passport.authenticate("local", {
     successRedirect: "/profile",
     failureRedirect: "/"
@@ -23,7 +28,7 @@ module.exports = function(app) {
   app.get("/logout", authenticationMiddleware(), function(req, res) {
     req.logout();
     req.session.destroy();
-    res.redirect("/");
+    res.redirect("/login");
   });
 
   app.post("/signup", function(req, res) {

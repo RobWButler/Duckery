@@ -2,38 +2,57 @@
   line-height: 2.5;
 }
 
-#duck{
+#home {
+  background-image: url(../media/bonusducks.mp4.mp4);
+  background-size: cover;
 
-position: relative;
-margin: 0em auto 0em;
-width: 8em;
-height: 16em;
-border-radius: 100% 0% 0% 100%/50% 0% 0% 50%;
-background-color:#03a162;
-background-image:
-radial-gradient(#000, #000 5px, transparent 0px);
-background-size: 300px 300px; 
-background-position: 225px 220px;
-transform:rotate(45deg);
-z-index: -3;
 }
-#duck:before{
-content:"";
-position:absolute;
-right: -7.9em;
-top:0em;
-width:8em;
-height:8em;
-background:#ff9204;
-border-bottom-right-radius:100%;
+.collapse{
+  background-image: url(../media/nab2.PNG);
+  background-size: cover;
+  background-repeat: none;
 }
-#duck:after{
-content:"";
-position:absolute;
-right: -7.9em;
-bottom:0em;
-width:8em;
-height:8em;
-background:#03a162;
-border-top-right-radius:100%;
+.navbar-nav{
+  padding-top: 0%;
+  padding-bottom: 0%;
+}
+.nav-item{
+  font-size: 30px;
+  font-family: 'Indie Flower', cursive;
+  -webkit-text-stroke: .5px black;
+  color: white !important;
+  text-shadow:
+    3px 3px 0 #000,
+   -.5px -.5px 0 #000,  
+    .5px -.5px 0 #000,
+   -.5px  .5px 0 #000,
+    .5px  .5px 0 #000;
+    border-right: solid 2px rgb(255, 217, 0);
+}
+body{
+background-image: url(../media/blue2.jpg);
+background-size: cover;
+}
+.navbar{
+  border-bottom: solid 2px rgb(255, 217, 0); 
+}
+.mini {
+  border-right: none;
+}
+.nav-link:hover{
+  color: rgb(255, 217, 0) !important;
+}
+.jumbotron{
+  background-image: url(../media/duckbanner.jpg);
+  background-size: cover;
+  background-repeat: none;
+  font-family: 'Indie Flower', cursive;
+  -webkit-text-stroke: .5px black;
+  color: white;
+  text-shadow:
+    3px 3px 0 #000,
+   -.5px -.5px 0 #000,  
+    .5px -.5px 0 #000,
+   -.5px  .5px 0 #000,
+    .5px  .5px 0 #000;
 }
