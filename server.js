@@ -1,35 +1,51 @@
-require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
+require('dotenv').config();
+const express = require('express');
+const exphbs = require('express-handlebars');
+const io = require('socket.io')();
 
-var db = require("./models");
+const db = require('./models');
 
-var app = express();
-var PORT = process.env.PORT || 3000;
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 // Handlebars
 app.engine(
-  "handlebars",
+  'handlebars',
   exphbs({
-    defaultLayout: "main"
+    defaultLayout: 'main'
   })
 );
-app.set("view engine", "handlebars");
+app.set('view engine', 'handlebars');
+
+// Sockets
+io.on('connection', socket => {
+  console.log('Socket made connection', socket.id);
+
+  // Handle chat event
+  socket.on('chat', data => {
+    io.sockets.emit('chat', data);
+  });
+
+  // Handle typing event
+  socket.on('typing', data => {
+    socket.broadcast.emit('typing', data);
+  });
+});
 
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+// require('./routes/apiRoutes')(app);
+// require('./routes/htmlRoutes')(app);
 
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
+if (process.env.NODE_ENV === 'test') {
   syncOptions.force = true;
 }
 
@@ -37,7 +53,7 @@ if (process.env.NODE_ENV === "test") {
 db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {
     console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      '==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.',
       PORT,
       PORT
     );
