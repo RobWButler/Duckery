@@ -1,0 +1,32 @@
+<div id="signup">
+  <div class="container">
+    {{#if errors}}
+    {{#each errors}}
+    <div class="alert alert-danger">
+      {{this.msg}}
+    </div>
+    {{/each}}
+    {{/if}}
+      <div class="row mt-5">
+        <div class="col">
+          <form method="POST" action="/signup" class="form-signup">
+            <h1 class="h3 mb-3 font-weight-normal mt-2">No account? Sign up!</h1>
+            <label for="inputPassword" class="sr-only mt-2">Username</label>
+            <input type="text" id="inputPassword" name="username" class="form-control mt-2 username"
+              placeholder="Username" required="" autofocus="">
+            <label for="inputPassword" class="sr-only mt-2">Password</label>
+            <input type="password" id="inputPassword" name="password" class="form-control mt-2 password"
+              placeholder="Password" required="">
+            <label for="inputPassword" class="sr-only mt-2">Enter Password Again</label>
+            <input type="password" id="inputPassword" name="password2" class="form-control mt-2 password2"
+              placeholder="Password again" required="">
+            <label for="inputEmail" class="sr-only mt-2">Email address</label>
+            <input type="email" id="inputEmail" name="email" class="form-control mt-2 email" placeholder="Email address"
+              required="">
+            <button class="btn btn-lg btn-primary btn-block mt-2" id="submitSU" name="submit" type="submit"> Sign
+              up</button>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
