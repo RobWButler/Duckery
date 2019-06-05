@@ -1,99 +1,163 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+//var User = require("../../models/index");
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  }
-};
+// // Get references to page elements
+// var $exampleText = $("#example-text");
+// var $exampleDescription = $("#example-description");
+// var $submitBtn = $("#submit");
+// var $exampleList = $("#example-list");
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+// // The API object contains methods for each kind of request we'll make
+// var API = {
+//   saveExample: function(example) {
+//     return $.ajax({
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       type: "POST",
+//       url: "/login",
+//       data: JSON.stringify(example)
+//     });
+//   },
+//   getExamples: function() {
+//     return $.ajax({
+//       url: "api/examples",
+//       type: "GET"
+//     });
+//   },
+//   deleteExample: function(id) {
+//     return $.ajax({
+//       url: "api/examples/" + id,
+//       type: "DELETE"
+//     });
+//   }
+// };
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
+// // refreshExamples gets new examples from the db and repopulates the list
+// var refreshExamples = function() {
+//   API.getExamples().then(function(data) {
+//     var $examples = data.map(function(example) {
+//       var $a = $("<a>")
+//         .text(example.text)
+//         .attr("href", "/example/" + example.id);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+//       var $li = $("<li>")
+//         .attr({
+//           class: "list-group-item",
+//           "data-id": example.id
+//         })
+//         .append($a);
 
-      $li.append($button);
+//       var $button = $("<button>")
+//         .addClass("btn btn-danger float-right delete")
+//         .text("ｘ");
 
-      return $li;
-    });
+//       $li.append($button);
 
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
+//       return $li;
+//     });
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
+//     $exampleList.empty();
+//     $exampleList.append($examples);
+//   });
+// };
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
+// // handleFormSubmit is called whenever we submit a new example
+// // Save the new example to the db and refresh the list
+// var handleFormSubmit = function(event) {
+//   event.preventDefault();
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
+//   var example = {
+//     text: $exampleText.val().trim(),
+//     description: $exampleDescription.val().trim()
+//   };
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
+//   if (!(example.text && example.description)) {
+//     alert("You must enter an example text and description!");
+//     return;
+//   }
 
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
+//   API.saveExample(example).then(function() {
+//     refreshExamples();
+//   });
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+//   $exampleText.val("");
+//   $exampleDescription.val("");
+// };
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
+// // handleDeleteBtnClick is called when an example's delete button is clicked
+// // Remove the example from the db and refresh the list
+// var handleDeleteBtnClick = function() {
+//   var idToDelete = $(this)
+//     .parent()
+//     .attr("data-id");
 
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+//   API.deleteExample(idToDelete).then(function() {
+//     refreshExamples();
+//   });
+// };
+
+// // Add event listeners to the submit and delete buttons
+// //$submitBtn.on("click", handleFormSubmit);
+// $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+// $("#submitSU").on("click", function(event) {
+//   event.preventDefault();
+
+//   console.log("hit");
+//   User = {
+//     username: $(".username")
+//       .val()
+//       .trim(),
+//     password: $(".password")
+//       .val()
+//       .trim(),
+//     password2: $(".password2")
+//       .val()
+//       .trim(),
+//     email: $(".email")
+//       .val()
+//       .trim()
+//   };
+//   console.log(User);
+//   $.ajax({
+//     type: "POST",
+//     url: "/signup",
+//     data: User
+//   }).then(function(data) {
+//     console.log(data);
+//     $(".username").val("");
+//     $(".password").val("");
+//     $(".password2").val("");
+//     $(".email").val("");
+//   });
+// });
+
+// $(".form-signup").on("submit", function() {
+//   User = {
+//     username: $(".username")
+//       .val()
+//       .trim(),
+//     password: $(".password")
+//       .val()
+//       .trim(),
+//     password2: $(".password2")
+//       .val()
+//       .trim(),
+//     email: $(".email")
+//       .val()
+//       .trim()
+//   };
+//   console.log(User);
+//   $.ajax({
+//     type: "POST",
+//     url: "/signup",
+//     data: User
+//   }).then(function(data) {
+//     console.log(data);
+//     $(".username").val("");
+//     $(".password").val("");
+//     $(".password2").val("");
+//     $(".email").val("");
+//   });
+//   return false;
+// });

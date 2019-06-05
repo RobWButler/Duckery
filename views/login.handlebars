@@ -1,0 +1,23 @@
+<div id="login">
+    <div class="container">
+        {{#if errors}}
+        {{#each errors}}
+        <div class="alert alert-danger">
+            {{this.msg}}
+        </div>
+        {{/each}}
+        {{/if}}
+        <h1 class="text-center">Login</h1>
+
+        <form class="form-signin" method="POST" action="/login">
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <label for="inputEmail" class="sr-only mt-2">Username</label>
+            <input type="text" id="inputEmail" name="username" class="form-control mt-2 signinem" placeholder="Username"
+                required="" autofocus="">
+            <label for="inputPassword" class="sr-only mt-2">Password</label>
+            <input type="password" id="inputPassword" name="password" class="form-control mt-2 signinpw"
+                placeholder="Password" required="">
+            <button class="btn btn-lg btn-primary btn-block mt-2" name="submit" type="submit">Sign in</button>
+        </form>
+    </div>
+</div>
