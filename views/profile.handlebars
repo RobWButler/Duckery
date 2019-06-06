@@ -1,0 +1,119 @@
+<style>
+  .account-duck {
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+  }
+  .achieve-box {
+    width: 80px;
+    height: 90px;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+  
+  .medal {
+    width: 80px;
+    height: 90px;
+    transition: filter .5s ease-in-out;
+    filter: none;
+    -webkit-filter: grayscale(0%);
+  }
+
+  .medal :hover {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }
+
+  #edit-duck {
+    background: none;
+    border: none;
+    outline: none;
+    float: right;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  #edit-duck:hover {
+    color: rgba(0, 0, 0, 1)
+  }
+</style>
+
+<body>
+  <div class="row">
+    <div class="col-3">
+      <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+        <a class="list-group-item list-group-item-action" id="list-stats-list" data-toggle="list" href="#list-stats" role="tab" aria-controls="achievements">Stats</a>
+        <a class="list-group-item list-group-item-action" id="list-achievements-list" data-toggle="list" href="#list-achievements" role="tab" aria-controls="achievements">Achievements</a>
+        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+          <ul style="list-style: none">
+            <li class="mt-1"><b>Account Name:</b> some Name</li>
+            <li class="mt-1"><b>Email:</b> some@email.com</li>
+            <li class="mt-1"><b>Password:</b> <button id="reset-password" type="button" class="btn btn-primary btn-sm">Reset Password</button></li>
+            <li><b>Your Duck:</b>
+              <div class="account-duck">
+                <button id="edit-duck" type="button" data-toggle="tooltip" data-placement="top" title="Edit Duck">
+                  <i class="fas fa-edit"></i>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-pane fade" id="list-stats" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+        <div class="tab-pane fade" id="list-achievements" role="tabpanel" aria-labelledby="list-achievements-list">
+          <div class="row">
+            <div class="col-1 achieve-box">
+              <img class="medal" src="../public/images/medal.png" alt="">
+            </div>
+            <div class="col-1 achieve-box">2</div>
+            <div class="col-1 achieve-box">3</div>
+            <div class="col-1 achieve-box">4</div>
+            <div class="col-1 achieve-box">5</div>
+            <div class="col-1 achieve-box">6</div>
+            <div class="col-1 achieve-box">7</div>
+            <div class="col-1 achieve-box">8</div>
+            <div class="col-1 achieve-box">9</div>
+            <div class="col-1 achieve-box">10</div>
+          </div>
+          <div class="row">
+            <div class="col-1 achieve-box">1</div>
+            <div class="col-1 achieve-box">2</div>
+            <div class="col-1 achieve-box">3</div>
+            <div class="col-1 achieve-box">4</div>
+            <div class="col-1 achieve-box">5</div>
+            <div class="col-1 achieve-box">6</div>
+            <div class="col-1 achieve-box">7</div>
+            <div class="col-1 achieve-box">8</div>
+            <div class="col-1 achieve-box">9</div>
+            <div class="col-1 achieve-box">10</div>
+          </div>
+          <div class="row">
+            <div class="col-1 achieve-box">1</div>
+            <div class="col-1 achieve-box">2</div>
+            <div class="col-1 achieve-box">3</div>
+            <div class="col-1 achieve-box">4</div>
+            <div class="col-1 achieve-box">5</div>
+            <div class="col-1 achieve-box">6</div>
+            <div class="col-1 achieve-box">7</div>
+            <div class="col-1 achieve-box">8</div>
+            <div class="col-1 achieve-box">9</div>
+            <div class="col-1 achieve-box">10</div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  // Init tooltips
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
