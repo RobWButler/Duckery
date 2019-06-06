@@ -4,7 +4,8 @@
     "password": "root",
     "database": "duckery",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
   },
   "test": {
     "username": "root",
@@ -12,10 +13,12 @@
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
-    "logging": false
+    "logging": false,
+    "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
   }
 }
