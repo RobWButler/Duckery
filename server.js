@@ -22,7 +22,7 @@ require('./socket/listeners')(io);
 require('./routes/htmlRoutes')(app);
 
 // Starting the server, syncing our models ------------------------------------/
-async function main () {
+async function main() {
   try {
     await db.sequelize.sync(config.syncOptions)
   } catch (err) {
