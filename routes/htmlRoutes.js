@@ -1,24 +1,33 @@
-var db = require('../models');
-var passport = require('passport');
-var bcrypt = require('bcrypt');
-var saltRounds = 10;
+const db = require('../models');
+const passport = require('passport');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 module.exports = function(app) {
   // Load index page
   app.get('/', function(req, res) {
-    res.render('home');
+    res.render('chat');
     console.log(req.user);
     console.log(req.isAuthenticated());
   });
+
   app.get('/profile', authenticationMiddleware(), function(req, res) {
     res.render('profile');
   });
+
   app.get('/login', function(req, res) {
     res.render('login');
   });
+
   app.get('/signup', function(req, res) {
     res.render('signup');
   });
+
+  // Chat page
+  app.get('/chat', function(req, res) {
+    res.render('chat');
+  });
+
   app.post(
     '/login',
     passport.authenticate('local', {
