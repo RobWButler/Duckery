@@ -53,4 +53,6 @@ module.exports = app => {
     res.locals.isAuthenticated = req.isAuthenticated();
     next();
   });
+
+  return { passport }
 };

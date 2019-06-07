@@ -11,8 +11,7 @@ module.exports = function(app) {
     console.log(req.isAuthenticated());
   });
 
-  app.get('/profile', //authenticationMiddleware(),
-   function(req, res) {
+  app.get('/profile', authenticationMiddleware(), function(req, res) {
     res.render('profile');
   });
 
@@ -25,8 +24,8 @@ module.exports = function(app) {
   });
 
   // Chat page
-  app.get('/chat,', function(req, res) {
-    res.render('chat')
+  app.get('/chat', function(req, res) {
+    res.render('chat');
   });
 
   app.post(
@@ -45,18 +44,23 @@ module.exports = function(app) {
 
   app.post('/signup', function(req, res) {
     req.checkBody('username', 'Username field cannot be empty.').notEmpty();
-    req.checkBody('username', 'Username must be between 4-15 characters long.')
+    req
+      .checkBody('username', 'Username must be between 4-15 characters long.')
       .len(4, 15);
-    req.checkBody('email', 'The email you entered is invalid, please try again.')
+    req
+      .checkBody('email', 'The email you entered is invalid, please try again.')
       .isEmail();
-    req.checkBody(
+    req
+      .checkBody(
         'email',
         'Email address must be between 4-100 characters long, please try again.'
       )
       .len(4, 100);
-    req.checkBody('password', 'Password must be between 8-100 characters long.')
+    req
+      .checkBody('password', 'Password must be between 8-100 characters long.')
       .len(8, 100);
-    req.checkBody(
+    req
+      .checkBody(
         'password',
         'Password must include one lowercase character, one uppercase character, a number, and a special character.'
       )
@@ -64,9 +68,11 @@ module.exports = function(app) {
         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/,
         'i'
       );
-    req.checkBody('password2', 'Password must be between 8-100 characters long.')
+    req
+      .checkBody('password2', 'Password must be between 8-100 characters long.')
       .len(8, 100);
-    req.checkBody('password2', 'Passwords do not match, please try again.')
+    req
+      .checkBody('password2', 'Passwords do not match, please try again.')
       .equals(req.body.password);
 
     var errors = req.validationErrors();
@@ -76,7 +82,9 @@ module.exports = function(app) {
       res.render('signup', { errors: errors });
     } else {
       bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-        if (err) throw err;
+        if (err) {
+          throw err;
+        }
         // Store hash in your password DB.
         db.User.create({
           username: req.body.username,
@@ -90,7 +98,9 @@ module.exports = function(app) {
               var userId = result[0];
               console.log(userId);
               req.login(userId, function(err) {
-                if (err) throw err;
+                if (err) {
+                  throw err;
+                }
                 res.redirect('/');
               });
             });

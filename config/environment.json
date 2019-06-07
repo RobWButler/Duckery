@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "kirby0077",
     "database": "duckery",
     "host": "localhost",
     "dialect": "mysql",
@@ -9,7 +9,7 @@
   },
   "test": {
     "username": "root",
-    "password": "root",
+    "password": "kirby0077",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",

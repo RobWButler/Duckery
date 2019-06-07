@@ -9,10 +9,10 @@ const db = require('./models');
 const PORT = process.env.PORT || 3000;
 
 // Express config
-require('./config/express-config')(app);
+const { passport } = require('./config/express-config')(app);
 
 // Passport config
-require('./config/passport-config');
+require('./config/passport-config')(passport);
 
 // Mount sockets listeners
 require('./socket/listeners')(io);
