@@ -3,7 +3,7 @@ const express = require('express');
 const expressValidator = require('express-validator');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-const passport = require('passport')
+const passport = require('passport');
 
 const config = require('../config/config.js');
 
@@ -54,5 +54,5 @@ module.exports = app => {
     next();
   });
 
-  return { passport }
+  return { passport };
 };
