@@ -3,7 +3,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
-const config = require('./config/config.js')
+const config = require('./config/config.js');
 const db = require('./models');
 
 const PORT = process.env.PORT || 3000;
@@ -24,20 +24,20 @@ require('./routes/htmlRoutes')(app);
 // Starting the server, syncing our models ------------------------------------/
 async function main() {
   try {
-    await db.sequelize.sync(config.syncOptions)
+    await db.sequelize.sync(config.syncOptions);
   } catch (err) {
-    console.error('Failed to initalize the database', err)
+    console.error('Failed to initalize the database', err);
   }
 
   try {
     await http.listen(PORT, function() {
-      console.log(`==> 🌎  Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`);
+      console.log(
+        `==> 🌎  Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`
+      );
     });
   } catch (err) {
-    console.error('Failed to initalize the server', err)
+    console.error('Failed to initalize the server', err);
   }
 }
-
-main()
-
+main();
 module.exports = app;

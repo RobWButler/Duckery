@@ -9,6 +9,9 @@
     "plugins": [
         "prettier"
       ],
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
     "rules": {
         "no-duplicate-case":"error",
         "no-empty":"error",
@@ -36,6 +39,6 @@
             "always"
         ],
         "prettier/prettier": ["error", {"singleQuote": true, "parser": "flow"}]
-        
+
     }
 }
