@@ -5,10 +5,10 @@ body {
 h1 {
   font-size: 40px;
   margin-left: 25%;
-  color: yellow;
+  color: black;
   padding-top: 20px;
   padding-bottom: 15px;
-  font-family: "Press Start 2P", cursive;
+  font-family: 'Merienda', cursive;
 }
  
 #new-game {
@@ -17,7 +17,7 @@ h1 {
   margin-bottom: 50px;
   background-color: gray;
   border: yellow 1px solid;
-  font-family: "Audiowide", cursive;
+  font-family: 'Merienda', cursive;
   clear: both;
 }
 
@@ -27,9 +27,16 @@ h1 {
 }
 
 h3 {
-  font-size: 20px;
-  color: yellow;
-  font-family: "Audiowide", cursive;
+  font-size: 25px;
+  color: black;
+  -webkit-text-stroke: .5px gold;
+  font-family: 'Merienda', cursive;
+  margin-left: 20px;
+}
+
+#chooseFighter {
+  color: black;
+  font-family: 'Merienda', cursive;
   margin-left: 30px;
 }
 
@@ -44,26 +51,20 @@ h3 {
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
-  color: yellow;
+  color: black;
   margin: 2px;
-  font-family: "Audiowide", cursive;
+  font-family: 'Merienda', cursive;
   overflow: hidden;
 }
 
 .character:hover {
-  color: greenyellow;
+  color: black;
   opacity: 1;
-  box-shadow: 0 5px 50px white;
+  box-shadow: 0 5px 50px yellow;
 }
 
-#Kenobi, #Windu {
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
-#General, #Maul, #Revan, #Koon {
-  margin-right: 10px;
-  margin-bottom: 10px;
+.character-stats {
+  padding-left: 10px;
 }
 
 #attack {
@@ -74,21 +75,13 @@ h3 {
   color: yellow;
   background-color: gray;
   border: yellow 1px solid;
-  font-family: "Audiowide", cursive;
+  font-family: 'Merienda', cursive;
 }
 
 #attack:hover {
   color: goldenrod;
   opacity: 1;
 }
-
-footer {
-  clear: both;
-  color: white;
-  font-size: 15px;
-  text-align: center;
-  margin-top: 20px;
- }
 
  .active-character{
   grid-row: 1 / span 4;
@@ -107,7 +100,7 @@ footer {
   margin: 20px;
   padding: 10px;
   color: yellow;
-  font-family: "Audiowide", cursive;
+  font-family: 'Merienda', cursive;
   -webkit-text-stroke: 1px black;
 }
 
@@ -143,4 +136,132 @@ footer {
 }
 #computer >.active-character-stats {
   background: rgba(255, 0, 0, 0.3)
+}
+
+.container-body {
+  padding: 8% 10% 18% 10%;
+}
+
+.list-group-item {
+  line-height: 2.5;
+}
+
+#home {
+  background-image: url(../images//bonusducks.mp4.mp4);
+  background-size: cover;
+
+}
+.collapse{
+  background-color: rgb(123, 252, 252);
+  background-size: contain;
+  background-repeat: none;
+}
+.navbar-nav{
+  padding-top: 0%;
+  padding-bottom: 0%;
+}
+.nav-item{
+  font-size: 30px;
+  font-family: 'Merienda', cursive;
+  color: black!important;
+}
+body{
+  background-image: url(../images/pattern.png);
+  background-size: stretch;
+  position: absolute;
+  width: 100%;
+}
+.navbar{
+  border-bottom: solid 2px rgb(255, 217, 0); 
+}
+.mini {
+  border-right: none;
+}
+.nav-link:hover{
+  color: rgb(255, 217, 0) !important;
+  text-shadow:
+    2px 2px 2px rgba(0, 0, 0, 0.856);  
+}
+
+h1 {
+  font-size: 55px;
+}
+.jumbotron{
+  background-image: url(../images/rubber-duck-wallpaper-3.jpg);
+  background-size: contain;
+  background-repeat: repeat-x;
+  font-family: 'Merienda', cursive;
+  -webkit-text-stroke: .5px black;
+  border-radius: 0px;
+  color: wheat;
+  text-shadow:
+    3px 3px 0 #000,
+   -.5px -.5px 0 #000,  
+    .5px -.5px 0 #000,
+   -.5px  .5px 0 #000,
+    .5px  .5px 0 #000;
+}
+
+#devh3 {
+  color: wheat;
+  font-size: 35px;
+  text-shadow: none;
+}
+
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+body {
+  font-family: 'EB Garamond', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header,
+footer {
+  padding: 18px;
+}
+
+h1, p {
+  margin-bottom: 24px;
+}
+
+p {
+  line-height: 1.4;
+}
+
+label {
+  font-weight: 700;
+}
+
+footer {
+  color: black;
+  background-color: rgb(123, 252, 252);
+  border-top: 2px solid rgb(255, 217, 0);
+  font-family: 'Merienda', cursive;
+  -webkit-text-stroke: .5px black;
+  width: 100%;
+  bottom: 0px;
+}
+
+.main-content {
+  display: none;
+}
+
+input:checked ~ .main-content {
+  display: block;
+}
+
+.social-icons, .footer-links {
+  list-style-type: none;
 }

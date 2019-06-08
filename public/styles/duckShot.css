@@ -217,6 +217,129 @@ input:checked ~ .duck-row__img:after {
   height: inherit;
 }
 
+.list-group-item {
+  line-height: 2.5;
+}
+
+#home {
+  background-image: url(../images//bonusducks.mp4.mp4);
+  background-size: cover;
+
+}
+.collapse{
+  background-color: rgb(123, 252, 252);
+  background-size: contain;
+  background-repeat: none;
+}
+.navbar-nav{
+  padding-top: 0%;
+  padding-bottom: 0%;
+}
+.nav-item{
+  font-size: 30px;
+  font-family: 'EB Garamond', serif;
+  color: black!important;
+}
+body{
+  background-image: url(../media/blue2.jpg);
+  background-size: cover;
+}
+.navbar{
+  border-bottom: solid 2px rgb(255, 217, 0); 
+}
+.mini {
+  border-right: none;
+}
+.nav-link:hover{
+  color: rgb(255, 217, 0) !important;
+  text-shadow:
+    2px 2px 2px rgba(0, 0, 0, 0.856);  
+}
+
+h1 {
+  font-size: 55px;
+}
+.jumbotron{
+  background-image: url(../images/rubber-duck-wallpaper-3.jpg);
+  background-size: contain;
+  background-repeat: repeat-x;
+  font-family: 'Merienda', cursive;
+  -webkit-text-stroke: .5px black;
+  border-radius: 0px;
+  color: wheat;
+  text-shadow:
+    3px 3px 0 #000,
+   -.5px -.5px 0 #000,  
+    .5px -.5px 0 #000,
+   -.5px  .5px 0 #000,
+    .5px  .5px 0 #000;
+}
+
+#devh3 {
+  color: wheat;
+  font-size: 35px;
+  text-shadow: none;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+body {
+  font-family: 'EB Garamond', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header,
+footer {
+  padding: 18px;
+}
+
+h1, p {
+  margin-bottom: 24px;
+}
+
+p {
+  line-height: 1.4;
+}
+
+label {
+  font-weight: 700;
+}
+
+footer {
+  color: black;
+  background-color: rgb(123, 252, 252);
+  border-top: 2px solid rgb(255, 217, 0);
+  font-family: 'Merienda', cursive;
+  -webkit-text-stroke: .5px black;
+  position: absolute;
+  width: 100%;
+  bottom: -300px;
+  padding-top: 18px;
+}
+
+.main-content {
+  display: none;
+}
+
+input:checked ~ .main-content {
+  display: block;
+}
+
+.social-icons, .footer-links {
+  list-style-type: none;
+}
+
 @-webkit-keyframes move {
   0% {
     margin-left: -4000px;

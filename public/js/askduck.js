@@ -3,7 +3,7 @@ $(function() {
 
   var siriWave = new SiriWave({
     container: document.getElementById('siri-container'),
-    width: 300,
+    width: 270,
     height: 150,
     color: '#fc0',
     frequency: 2,

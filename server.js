@@ -1,18 +1,6 @@
 require('dotenv').config();
 var express = require('express');
 var exphbs = require('express-handlebars');
-<<<<<<< HEAD
-
-var db = require('./models');
-
-var app = express();
-var PORT = process.env.PORT || 3300;
-
-// Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(express.static('public'));
-=======
 var db = require('./models');
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -42,13 +30,12 @@ app.use(express.static('public'));
 var options = {
   host: 'localhost',
   port: 3306,
-  user: 'dderrickmatheww',
-  password: 'Blind5656!',
+  user: 'root',
+  password: 'root',
   database: 'exampledb'
 };
 
 var sessionStore = new MySQLStore(options);
->>>>>>> 3b2805568b973b82e1c8918a7e3723ba1fa1ce2a
 
 app.use(
   session({
@@ -75,10 +62,6 @@ app.use(function(req, res, next) {
   next();
 });
 // Routes
-<<<<<<< HEAD
-require('./routes/apiRoutes')(app);
-require('./routes/htmlRoutes')(app);
-=======
 // require("./routes/apiRoutes")(app);
 require('./routes/htmlRoutes')(app);
 
@@ -108,7 +91,6 @@ passport.use(
       });
   })
 );
->>>>>>> 3b2805568b973b82e1c8918a7e3723ba1fa1ce2a
 
 var syncOptions = { force: false };
 
