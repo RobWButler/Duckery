@@ -6,7 +6,7 @@ const saltRounds = 10;
 module.exports = function(app) {
   // Load index page
   app.get('/', function(req, res) {
-    res.render('home', { style: 'styles' })
+    res.render('home', { style: 'styles' });
     console.log(req.user);
     console.log(req.isAuthenticated());
   });
