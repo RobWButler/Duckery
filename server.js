@@ -26,7 +26,7 @@ async function main() {
   try {
     await db.sequelize.sync(config.syncOptions);
   } catch (err) {
-    console.error('Failed to initalize the database', err);
+    console.error('Failed to initialize the database', err);
   }
 
   try {
@@ -36,7 +36,7 @@ async function main() {
       );
     });
   } catch (err) {
-    console.error('Failed to initalize the server', err);
+    console.error('Failed to initialize the server', err);
   }
 }
 main();
