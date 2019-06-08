@@ -9,6 +9,13 @@
   <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Merienda&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <title>Home Page</title>
+  <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/ed9085990d.js"></script>
+  <!--- Socket.io -->
+  <script src="/socket.io/socket.io.js"></script>
+
+  <title>Duckery</title>
 </head>
 
 
@@ -26,6 +33,7 @@
       {{#if isAuthenticated}}
       <a class="nav-item nav-link pr-5 pl-5" href="/logout">Logout</a>
       <a class="nav-item nav-link pr-5 pl-5" href="/profile">Profile</a>
+      <a class="nav-item nav-link pr-5 pl-5" href="/chat">Chat</a>
       {{else}}
       <a class="nav-item nav-link pr-5 pl-5" href="/signup">Sign up</a>
       <a class="nav-item nav-link pr-5 pl-5" href="/login">Login</a>
@@ -41,48 +49,49 @@
 </div>
 
 </body>
- <footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12 col-md-8">
-            <h6>About Us</h6>
-            <p class="text-justify">Duckery <i>A developer's best friend </br> </i> The rubber duck method refers to the action of talking out a problem to a rubber duck the same way
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-8">
+          <h6>About Us</h6>
+          <p class="text-justify">Duckery <i>A developer's best friend </br> </i> The rubber duck method refers to the action of talking out a problem to a rubber duck the same way
             you would to a person. Through talking about the problem with your trusty duck, you will actually answer your own question!
             This method is well known throughout the coding community, which is why we have created a platform for anyone to create their own virtual rubber
             duck. We hope you enjoy it, and we ensure this method will provide stress relief and answers to your conflicts, quesitons, and bugs!</p>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-           
-            <ul class="footer-links">
-              <h6>Other Links</h6>
-              <li><a href="https://www.hotdrop.games/"><i class="fas fa-parachute-box"></i>  Hot Drop</a></li>
-              <li><a href="https://ethanbonsignori.github.io/MenYou/"><i class="fab fa-elementor"></i>  MenYou</a></li>
-              <li><a href="http://placeholder.com/contribute-at-scanfcode/"><i class="fas fa-tshirt"></i>  Duckery Apparel</a></li>
-              <li><a href="https://github.com/EthanBonsignori/duckery"><i class="fab fa-github-square"></i>  GitHub Repo</a></li>
-            </ul>
-          </div>
         </div>
-        <hr>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-sm-6 col-xs-12">
-            <p class="copyright-text">Copyright &copy; 2019 All Rights Reserved by 
-         <a href="#">Coding Chimps</a>
-            </p>
-          </div>
-
-          <div class="col-md-4 col-sm-6 col-xs-12">
-            <ul class="social-icons">
-              <li><a class="Bobby" href="https://github.com/RobWButler"><i class="fas fa-user-tie"></i>  Robert Butler</a></li>
-              <li><a class="Tristan" href="https://github.com/TristanHarkleroad"><i class="fas fa-user-tie"></i>  Tristan Harkleroad</a></li>
-              <li><a class="Derrick" href="https://github.com/dderrickmatheww"><i class="fas fa-user-tie"></i>  Derrick Mathew</a></li>
-              <li><a class="Ethan" href="https://github.com/EthanBonsignori"><i class="fas fa-user-tie"></i>  Ethan Bonsignori</a></li>
-            </ul>
-          </div>
+        <div class="col-xs-6 col-md-3">           
+          <ul class="footer-links">
+            <h6>Other Links</h6>
+            <li><a href="https://www.hotdrop.games/"><i class="fas fa-parachute-box"></i>  Hot Drop</a></li>
+            <li><a href="https://ethanbonsignori.github.io/MenYou/"><i class="fab fa-elementor"></i>  MenYou</a></li>
+            <li><a href="http://placeholder.com/contribute-at-scanfcode/"><i class="fas fa-tshirt"></i>  Duckery Apparel</a></li>
+            <li><a href="https://github.com/EthanBonsignori/duckery"><i class="fab fa-github-square"></i>  GitHub Repo</a></li>
+          </ul>
         </div>
       </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2019 All Rights Reserved by 
+            <a href="#">Coding Chimps</a>
+          </p>
+        </div>
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <ul class="social-icons">
+          <li><a class="Bobby" href="https://github.com/RobWButler"><i class="fas fa-user-tie"></i>  Robert Butler</a></li>
+          <li><a class="Tristan" href="https://github.com/TristanHarkleroad"><i class="fas fa-user-tie"></i>  Tristan Harkleroad</a></li>
+          <li><a class="Derrick" href="https://github.com/dderrickmatheww"><i class="fas fa-user-tie"></i>  Derrick Mathew</a></li>
+          <li><a class="Ethan" href="https://github.com/EthanBonsignori"><i class="fas fa-user-tie"></i>  Ethan Bonsignori</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </footer>
-<script src="/js/{{script}}.js"></script>
+
+  <script src="/js/{{script}}.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>
