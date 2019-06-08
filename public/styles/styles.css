@@ -90,12 +90,21 @@ header {
   padding: 18px;
 }
 
-h1, p {
+h1 {
   margin-bottom: 24px;
+}
+
+.welcomeAll {
+  font-family: 'Merienda', cursive;
 }
 
 p {
   line-height: 1.4;
+}
+
+.welcomeP {
+  font-size: 30px;
+  font-family: 'Merienda', cursive;
 }
 
 label {
