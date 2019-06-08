@@ -1,15 +1,19 @@
+.container-body {
+  padding: 8% 10% 18% 10%;
+}
+
 .list-group-item {
   line-height: 2.5;
 }
 
 #home {
-  background-image: url(../media/bonusducks.mp4.mp4);
+  background-image: url(../images//bonusducks.mp4.mp4);
   background-size: cover;
 
 }
 .collapse{
-  background-image: url(../media/nab2.PNG);
-  background-size: cover;
+  background-color: rgb(123, 252, 252);
+  background-size: contain;
   background-repeat: none;
 }
 .navbar-nav{
@@ -18,20 +22,14 @@
 }
 .nav-item{
   font-size: 30px;
-  font-family: 'Indie Flower', cursive;
-  -webkit-text-stroke: .5px black;
-  color: white !important;
-  text-shadow:
-    3px 3px 0 #000,
-   -.5px -.5px 0 #000,  
-    .5px -.5px 0 #000,
-   -.5px  .5px 0 #000,
-    .5px  .5px 0 #000;
-    border-right: solid 2px rgb(255, 217, 0);
+  font-family: 'EB Garamond', serif;
+  color: black!important;
 }
 body{
-background-image: url(../media/blue2.jpg);
-background-size: cover;
+  background-image: url(../images/pattern.png);
+  background-size: stretch;
+  position: absolute;
+  width: 100%;
 }
 .navbar{
   border-bottom: solid 2px rgb(255, 217, 0); 
@@ -41,18 +39,88 @@ background-size: cover;
 }
 .nav-link:hover{
   color: rgb(255, 217, 0) !important;
+  text-shadow:
+    2px 2px 2px rgba(0, 0, 0, 0.856);  
+}
+
+h1 {
+  font-size: 55px;
 }
 .jumbotron{
-  background-image: url(../media/duckbanner.jpg);
-  background-size: cover;
-  background-repeat: none;
-  font-family: 'Indie Flower', cursive;
+  background-image: url(../images/rubber-duck-wallpaper-3.jpg);
+  background-size: contain;
+  background-repeat: repeat-x;
+  font-family: 'Merienda', cursive;
   -webkit-text-stroke: .5px black;
-  color: white;
+  border-radius: 0px;
+  color: wheat;
   text-shadow:
     3px 3px 0 #000,
    -.5px -.5px 0 #000,  
     .5px -.5px 0 #000,
    -.5px  .5px 0 #000,
     .5px  .5px 0 #000;
+}
+
+#devh3 {
+  color: wheat;
+  font-size: 35px;
+  text-shadow: none;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+body {
+  font-family: 'EB Garamond', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header {
+  padding: 18px;
+}
+
+h1, p {
+  margin-bottom: 24px;
+}
+
+p {
+  line-height: 1.4;
+}
+
+label {
+  font-weight: 700;
+}
+
+footer {
+  color: black;
+  background-color: rgb(123, 252, 252);
+  border-top: 2px solid rgb(255, 217, 0);
+  font-family: 'Merienda', cursive;
+  -webkit-text-stroke: .5px black;
+  width: 100%;
+  bottom: 0px;
+  padding-top: 18px;
+}
+
+.main-content {
+  display: none;
+}
+
+input:checked ~ .main-content {
+  display: block;
+}
+
+.social-icons, .footer-links {
+  list-style-type: none;
 }

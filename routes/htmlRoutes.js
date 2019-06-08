@@ -6,21 +6,21 @@ const saltRounds = 10;
 module.exports = function(app) {
   // Load index page
   app.get('/', function(req, res) {
-    res.render('chat');
+    res.render('home', { style: 'styles' });
     console.log(req.user);
     console.log(req.isAuthenticated());
   });
 
   app.get('/profile', authenticationMiddleware(), function(req, res) {
-    res.render('profile');
+    res.render('profile', { style: 'styles' });
   });
 
   app.get('/login', function(req, res) {
-    res.render('login');
+    res.render('login', { style: 'styles' });
   });
 
   app.get('/signup', function(req, res) {
-    res.render('signup');
+    res.render('signup', { style: 'styles' });
   });
 
   // Chat page
@@ -129,19 +129,23 @@ module.exports = function(app) {
       res.redirect('/');
     };
   }
-  // Load example page and pass in an example by id
-  app.get('/example/:id', function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.render('example', {
-        example: dbExample
-      });
-    });
+  app.get('/minigames', function(req, res) {
+    res.render('minigames', { style: 'styles' });
+  });
+  app.get('/duckshot', function(req, res) {
+    res.render('duckshot', { style: 'duckshot' });
+  });
+
+  app.get('/askduck', function(req, res) {
+    res.render('askduck', { style: 'askduck', script: 'askduck' });
+  });
+
+  app.get('/battleducks', function(req, res) {
+    res.render('battleducks', { style: 'battleducks', script: 'battleducks' });
   });
 
   // Render 404 page for any unmatched routes
   app.get('*', function(req, res) {
-    res.render('404');
+    res.render('404', { style: 'styles' });
   });
 };
