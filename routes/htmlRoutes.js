@@ -136,6 +136,10 @@ module.exports = function(app) {
     res.render('duckshot', { style: 'duckshot' });
   });
 
+  app.get('/createduck', function(req, res) {
+    res.render('createduck', { style: 'styles' });
+  });
+
   app.get('/askduck', function(req, res) {
     res.render('askduck', { style: 'askduck', script: 'askduck' });
   });

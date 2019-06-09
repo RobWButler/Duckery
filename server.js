@@ -17,7 +17,7 @@ require('./config/passport-config')(passport);
 require('./socket/listeners')(io);
 
 // Mount express routes
-// require('./routes/apiRoutes')(app);
+require('./routes/apiRoutes')(app);
 require('./routes/htmlRoutes')(app);
 
 // Starting the server, syncing our models ------------------------------------/
