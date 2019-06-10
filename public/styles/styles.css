@@ -160,11 +160,6 @@ canvas{
   padding: 1.5rem;
 }
 
-a{
-  color: gray;
-  background-color: rgb(245, 245, 245);
-}
-
 a:link{
   text-decoration: none;
 }
