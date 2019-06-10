@@ -101,12 +101,12 @@ button {
   socket.on('chat', data => {
     console.log(data)
     feedback.innerHtml = '';
-    chatOutput.innerHtml += `<p><b>${data.handle}:</b> ${data.message}</p>`;
+    chatOutput.innerHTML += `<p><b>${data.handle}:</b> ${data.message}</p>`;
   });
 
   socket.on('typing', data => {
     console.log(data)
-    feedback.innerHtml = `<p><i>${data} is typing...</i></p>`;
+    feedback.innerHTML = `<p><i>${data} is typing...</i></p>`;
   });
 })();
 </script>

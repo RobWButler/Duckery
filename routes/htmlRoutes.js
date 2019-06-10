@@ -10,13 +10,13 @@ module.exports = function(app) {
   // Home page
 
   app.get('/', function(req, res) {
-    res.render('chat');
+    res.render('home', { style: 'styles' });
     console.log(req.user);
     console.log(req.isAuthenticated());
   });
 
   app.get('/profile', authenticationMiddleware(), function(req, res) {
-    res.render('profile');
+    res.render('profile', { style: 'styles' });
   });
 
   // Chat page
@@ -28,7 +28,7 @@ module.exports = function(app) {
   // Login routes
 
   app.get('/login', function(req, res) {
-    res.render('login');
+    res.render('login', { style: 'styles' });
   });
 
   app.post(
@@ -50,7 +50,7 @@ module.exports = function(app) {
   // Sign up routes
 
   app.get('/signup', function(req, res) {
-    res.render('signup');
+    res.render('signup', { style: 'styles' });
   });
 
   app.post('/signup', function(req, res) {
@@ -141,6 +141,24 @@ module.exports = function(app) {
     };
   }
 
+  //Mini games routes
+
+  app.get('/minigames', function(req, res) {
+    res.render('minigames', { style: 'styles' });
+  });
+
+  app.get('/duckshot', function(req, res) {
+    res.render('duckshot', { style: 'duckshot' });
+  });
+
+  app.get('/askduck', function(req, res) {
+    res.render('askduck', { style: 'askduck', script: 'askduck' });
+  });
+
+  app.get('/battleducks', function(req, res) {
+    res.render('battleducks', { style: 'battleducks', script: 'battleducks' });
+  });
+
   //Forgot password routes
 
   app.get('/forgot', function(req, res) {
@@ -166,16 +184,12 @@ module.exports = function(app) {
             }
             user.resetPasswordToken = token;
             user.resetPasswordExpires = Date.now() + 3600000;
-            console.log(token);
             user.save().then(function(user, err) {
-              console.log('got it');
               done(err, token, user);
             });
           });
         },
         function(token, user, done) {
-          // console.log(token);
-          console.log(user);
           var smtpTransport = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
@@ -337,12 +351,17 @@ module.exports = function(app) {
         }
       ],
       function(err) {
+        if (err) {
+          throw err;
+        }
         res.redirect('/login');
       }
     );
   });
+
   // Render 404 page for any unmatched routes
+
   app.get('*', function(req, res) {
-    res.render('404');
+    res.render('404', { style: 'styles' });
   });
 };

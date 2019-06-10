@@ -1,16 +1,28 @@
 {
   "development": {
+<<<<<<< HEAD
     "username": "dderrickmatheww",
     "password": "Blind5656!",
     "database": "exampledb",
+=======
+    "username": "root",
+    "password": "root",
+    "database": "blogger",
+>>>>>>> master
     "host": "localhost",
     "dialect": "mysql",
     "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
   },
   "test": {
+<<<<<<< HEAD
     "username": "dderrickmatheww",
     "password": "Blind5656!",
     "database": "exampledb",
+=======
+    "username": "root",
+    "password": "root",
+    "database": "testdb",
+>>>>>>> master
     "host": "localhost",
     "dialect": "mysql",
     "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
