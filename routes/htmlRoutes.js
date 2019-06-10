@@ -140,6 +140,14 @@ module.exports = function(app) {
     res.render('createduck', { style: 'styles' });
   });
 
+  app.get('/viewduck/:id', function(req, res) {
+    res.render('viewduck', {
+      style: 'styles',
+      duck: res,
+      id: req.params.id - 1
+    });
+  });
+
   app.get('/askduck', function(req, res) {
     res.render('askduck', { style: 'askduck', script: 'askduck' });
   });

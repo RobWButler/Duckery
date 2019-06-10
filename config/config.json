@@ -1,10 +1,6 @@
 {
   "development": {
-    "username": "root",
-    "password": "root",
-    "database": "blogger",
-    "host": "localhost",
-    "dialect": "mysql"
+    "use_env_variable": "DEV_SQL_URL"
   },
   "test": {
     "username": "root",

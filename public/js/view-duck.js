@@ -1,6 +1,6 @@
 $('document').ready(function() {
   const obj = document.createElement('audio');
-  obj.src = '../sound/squeak.wav';
+  obj.src = '../duck/sound/squeak.wav';
   obj.volume = 0.2;
   obj.autoPlay = false;
   obj.preLoad = true;
@@ -127,7 +127,7 @@ function squeeze() {
       name: 'balloon',
       groups: ['tips'],
       layer: true,
-      source: './duck/balloon.svg',
+      source: '../duck/balloon.svg',
       x: 435,
       y: 90
     })
