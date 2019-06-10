@@ -1,14 +1,14 @@
-var db = require('../models');
+const db = require('../models');
 
-module.exports = function(app) {
-  // Get all examples
+module.exports = app => {
+  // GET all ducks
   app.get('/api/ducks', function(req, res) {
     db.Duck.findAll({}).then(function(dbExamples) {
       res.json(dbExamples);
     });
   });
 
-  // Create a new example
+  // GET one duck by id
   app.get('/api/ducks/:id', function(req, res) {
     db.Duck.findOne({ where: { id: req.params.id } }).then(function(
       dbExamples
@@ -17,7 +17,7 @@ module.exports = function(app) {
     });
   });
 
-  // Create a new example
+  // POST new duck
   app.post('/api/ducks', function(req, res) {
     db.Duck.create(req.body).then(function(dbExample) {
       res.json(dbExample);

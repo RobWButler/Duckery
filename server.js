@@ -20,6 +20,7 @@ require('./socket/listeners')(io);
 
 // Mount express routes
 require('./routes/apiRoutes')(app);
+require('./routes/authRoutes')(app);
 require('./routes/htmlRoutes')(app);
 
 // Starting the server, syncing our models ------------------------------------/
