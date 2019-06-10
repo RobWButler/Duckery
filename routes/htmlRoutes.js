@@ -30,12 +30,15 @@ module.exports = app => {
   app.get('/minigames', function(req, res) {
     res.render('minigames', { style: 'styles' });
   });
+  
   app.get('/minigames/duckshot', function(req, res) {
     res.render('duckshot', { style: 'duckshot' });
   });
+  
   app.get('/minigames/askduck', function(req, res) {
     res.render('askduck', { style: 'askduck', script: 'askduck' });
   });
+  
   app.get('/minigames/battleducks', function(req, res) {
     res.render('battleducks', { style: 'battleducks', script: 'battleducks' });
   });
