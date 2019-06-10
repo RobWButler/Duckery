@@ -76,7 +76,9 @@ button {
 // On load
 (function() {
   const socket = io.connect('http://localhost:3000');
-
+  
+  // Get username passed from route
+  const username = "{{{username}}}";
   // Store DOM elements
   const message = document.getElementById('message');
   const handle = document.getElementById('handle');
@@ -84,11 +86,18 @@ button {
   const chatOutput = document.getElementById('chat-output');
   const feedback = document.getElementById('feedback');
 
+  const sendMessage = function () {
+    fetch('/chat/user', { method: 'GET' })
+      .then(response => {
+      console.log(response.body)
+    })
+  }
   // Emit chat event
   sendBtn.addEventListener('click', () => {
+    sendMessage();
     socket.emit('chat', {
       message: message.value,
-      handle: handle.value
+      handle: username
     });
     message.value = '';
   });
@@ -108,5 +117,6 @@ button {
     console.log(data)
     feedback.innerHTML = `<p><i>${data} is typing...</i></p>`;
   });
+  console.log('username123', username)
 })();
 </script>

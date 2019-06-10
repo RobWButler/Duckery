@@ -23,4 +23,13 @@ module.exports = function(app) {
       res.json(dbExample);
     });
   });
+
+  // Get Logged in User
+  app.get('/chat/user', (req, res) => {
+    res.json({
+      reqUser: req.user,
+      resUser: res.user,
+      resSession: res.session
+    });
+  });
 };

@@ -7,7 +7,7 @@ module.exports = function(app) {
   // Load index page
   app.get('/', function(req, res) {
     res.render('home', { style: 'styles' });
-    console.log(req.user);
+    console.log('user', req.user);
     console.log(req.isAuthenticated());
   });
 
@@ -25,7 +25,8 @@ module.exports = function(app) {
 
   // Chat page
   app.get('/chat', function(req, res) {
-    res.render('chat');
+    console.log(req.user.name);
+    res.render('chat', { username: req.body.username });
   });
 
   app.post(
@@ -109,12 +110,14 @@ module.exports = function(app) {
     }
   });
 
-  passport.serializeUser(function(userId, done) {
-    done(null, userId);
+  passport.serializeUser(function(user, done) {
+    done(null, user.id);
   });
 
-  passport.deserializeUser(function(userId, done) {
-    done(null, userId);
+  passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+      done(err, user);
+    });
   });
 
   function authenticationMiddleware() {
