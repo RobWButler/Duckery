@@ -2,15 +2,24 @@ var db = require('../models');
 
 module.exports = function(app) {
   // Get all examples
-  app.get('/api/examples', function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+  app.get('/api/ducks', function(req, res) {
+    db.Duck.findAll({}).then(function(dbExamples) {
       res.json(dbExamples);
     });
   });
 
   // Create a new example
-  app.post('/api/examples', function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
+  app.get('/api/ducks/:id', function(req, res) {
+    db.Duck.findOne({ where: { id: req.params.id } }).then(function(
+      dbExamples
+    ) {
+      res.json(dbExamples);
+    });
+  });
+
+  // Create a new example
+  app.post('/api/ducks', function(req, res) {
+    db.Duck.create(req.body).then(function(dbExample) {
       res.json(dbExample);
     });
   });

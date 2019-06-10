@@ -1,0 +1,160 @@
+  <div class="text-center clearfix" id="duck-creator">
+      <div class="col-md-4 mr-5 float-left">
+        <canvas id="canvas1" width="400" height="400"></canvas>
+
+        <div>
+          <button id="submit" class="btn btn-primary btn-lg">Submit</button>
+
+          <button type="button" id="download" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#thumbmodal">
+            Get An Image
+          </button>       
+        </div>
+        {{> modals/thumbmodal}}
+        <hr>
+
+        <div>
+          <h4>Accessories</h4>
+          <p>Selected Accessory: <img id="showaccessory" src="" class="img-thumbnail accpreview"></p>
+          <div class="no-hat hat-picker">
+            <img class ='img img-thumbnail nohat'src='./duck/accessories/none.svg' title='Some ducks stand on their own'>
+          </div>
+          <div class="hat-picker">
+              <img class ='img img-thumbnail accessory'src='./duck/accessories/hattest.svg' title='A simple hat for a simple duck'>
+              <img class ='img img-thumbnail accessory'src='./duck/accessories/l3helmet.svg' title='Winner winner duckie dinner'>
+              <img class ='img img-thumbnail accessory'src='./duck/accessories/sunglasses.svg' title='Duck with it'>
+              <img class ='img img-thumbnail accessory'src='./duck/accessories/devil.svg' title='Roast duck'>
+              <img class ='img img-thumbnail accessory'src='./duck/accessories/headband.svg' title='The answer lies in the heart of paddle'>
+              <img class ='img img-thumbnail accessory'src='./duck/accessories/angel.svg' title='Wait... ducks already have wings.'>
+              <img class ='img img-thumbnail accessory'src='./duck/accessories/cowboy.svg' title="It's high noon">
+              <img class ='img img-thumbnail accessory'src='./duck/accessories/beard.svg' title='Is it... made of feathers?'>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-7 float-right">
+      <div class="custommenus border border-primary m-1">
+        <h3>Head</h3>
+          <div class="row text-center">
+            <div class="colormenu border-right col-md-4">
+                <input type="color" id="head_color"
+                  value="#ffff00">
+                <label for="color"><h4>Color</h4></label>
+            </div>
+
+            <div class="gradientmenu border-primary col-md-4">
+              <btn class="btn btn-warning btn-lg mb-2" id="grad_head">Apply Gradient</btn>
+              <div id='gradpicker'>
+                <input type="color" id="head_c1_color" 
+                  value="#ffff00">
+                <label for="color"><h4>Gradient Color 1</h4></label>
+                <br>
+                <input type="color" id="head_c2_color"
+                  value="#ffff00">
+                <label for="color"><h4>Gradient Color 2</h4></label>
+              </div>
+            </div>
+
+              <div class="patternmenu border-primary col-md-4">
+                <p>Selected Pattern: <img id="showheadPat" src="" class="img-thumbnail patpreview"></p>
+                <div class='patpicker'>
+                  <img class ='img img-thumbnail pattern head-pat' src='./duck/patterns/greencamo.jpg' title='The hunted becomes the hunter'>
+                  <img class ='img img-thumbnail pattern head-pat' src='./duck/patterns/duckception.jpg' title='Ducks within ducks'>
+                  <img class ='img img-thumbnail pattern head-pat'src='./duck/patterns/tartan.png' title='MacDuck'>
+                  <img class ='img img-thumbnail pattern head-pat' src='./duck/patterns/coffee.jpg' title='Java while you java'>
+                  <img class ='img img-thumbnail pattern head-pat' src='./duck/patterns/cosmo.jpg' title='The power Quacksmic'>
+                  <img class ='img img-thumbnail pattern head-pat' src='./duck/patterns/danger.jpg' title='High voltage'>
+                  <img class ='img img-thumbnail pattern head-pat' src='./duck/patterns/leather.jpg' title='Rich Corinthian'>
+                  <img class ='img img-thumbnail pattern head-pat' src='./duck/patterns/leopard.jpg' title='This duck is endangered'>
+                  <img class ='img img-thumbnail pattern head-pat' src='./duck/patterns/marble.jpg' title="It'll sink, but it's fine art">
+                  <img class ='img img-thumbnail pattern head-pat' src='./duck/patterns/wood.jpg' title="For that classic 80s finish">
+                  <img class ='img img-thumbnail pattern head-pat' src='./duck/patterns/rainbow.jpg' title="After the rain">
+                  <img class ='img img-thumbnail pattern head-pat' src='./duck/patterns/tiedye.jpg' title="Expand your mind">
+
+                </div>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="custommenus border border-primary m-1">
+        <h3>Bill</h3>
+          <div class="row text-center">
+            <div class="colormenu border-primary col-md-6">
+                <input type="color" id="bill_color"
+                  value="#ffff00">
+                <label for="color"><h4>Color</h4></label>
+            </div>
+
+              <div class="patternmenu border-primary col-md-6">
+                <p>Selected Pattern: <img id="showbillPat" src="" class="img-thumbnail patpreview"></p>
+                <div class='patpicker'>
+                  <img class ='img img-thumbnail pattern bill-pat' src='./duck/patterns/greencamo.jpg' title='The hunted becomes the hunter'>
+                  <img class ='img img-thumbnail pattern bill-pat' src='./duck/patterns/duckception.jpg' title='Ducks within ducks'>
+                  <img class ='img img-thumbnail pattern bill-pat'src='./duck/patterns/tartan.png' title='MacDuck'>
+                  <img class ='img img-thumbnail pattern bill-pat' src='./duck/patterns/coffee.jpg' title='Java while you java'>
+                  <img class ='img img-thumbnail pattern bill-pat' src='./duck/patterns/cosmo.jpg' title='The power Quacksmic'>
+                  <img class ='img img-thumbnail pattern bill-pat' src='./duck/patterns/danger.jpg' title='High voltage'>
+                  <img class ='img img-thumbnail pattern bill-pat' src='./duck/patterns/leather.jpg' title='Rich Corinthian'>
+                  <img class ='img img-thumbnail pattern bill-pat' src='./duck/patterns/leopard.jpg' title='This duck is endangered'>
+                  <img class ='img img-thumbnail pattern bill-pat' src='./duck/patterns/marble.jpg' title="It'll sink, but it's fine art">
+                  <img class ='img img-thumbnail pattern bill-pat' src='./duck/patterns/wood.jpg' title="For that classic 80s finish">
+                  <img class ='img img-thumbnail pattern bill-pat' src='./duck/patterns/rainbow.jpg' title="After the rain">
+                  <img class ='img img-thumbnail pattern bill-pat' src='./duck/patterns/tiedye.jpg' title="Expand your mind">
+                </div>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="custommenus border border-primary m-1">
+        <h3>Body</h3>
+          <div class="row text-center">
+            <div class="colormenu border-primary col-md-4">
+                <input type="color" id="body_color"
+                  value="#ffff00">
+                <label for="color"><h4>Color</h4></label>
+            </div>
+
+            <div class="gradientmenu border-primary col-md-4">
+              <btn class="btn btn-warning btn-lg mb-2" id="grad_body">Apply Gradient</btn>
+              <div id='gradpicker'>
+                <input type="color" id="body_c1_color"
+                  value="#ffff00">
+                <label for="color"><h4>Gradient Color 1</h4></label>
+                <br>
+                <input type="color" id="body_c2_color"
+                  value="#ffff00">
+                <label for="color"><h4>Gradient Color 2</h4></label>
+              </div>
+            </div>
+
+              <div class="patternmenu border-primary col-md-4">
+                <p>Selected Pattern: <img id="showbodyPat" src="" class="img-thumbnail patpreview"></p>
+                <div class='patpicker'>
+                  <img class ='img img-thumbnail pattern body-pat'src='./duck/patterns/greencamo.jpg' title='The hunted becomes the hunter'>
+                  <img class ='img img-thumbnail pattern body-pat'src='./duck/patterns/duckception.jpg' title='Ducks within ducks'>
+                  <img class ='img img-thumbnail pattern body-pat'src='./duck/patterns/tartan.png' title='MacDuck'>
+                  <img class ='img img-thumbnail pattern body-pat' src='./duck/patterns/coffee.jpg' title='Java while you java'>
+                  <img class ='img img-thumbnail pattern body-pat' src='./duck/patterns/cosmo.jpg' title='The power Quacksmic'>
+                  <img class ='img img-thumbnail pattern body-pat' src='./duck/patterns/danger.jpg' title='High voltage'>
+                  <img class ='img img-thumbnail pattern body-pat' src='./duck/patterns/leather.jpg' title='Rich Corinthian'>
+                  <img class ='img img-thumbnail pattern body-pat' src='./duck/patterns/leopard.jpg' title='This duck is endangered'>
+                  <img class ='img img-thumbnail pattern body-pat' src='./duck/patterns/marble.jpg' title="It'll sink, but it's fine art">
+                  <img class ='img img-thumbnail pattern body-pat' src='./duck/patterns/wood.jpg' title="For that classic 80s finish">
+                  <img class ='img img-thumbnail pattern body-pat' src='./duck/patterns/rainbow.jpg' title="After the rain">
+                  <img class ='img img-thumbnail pattern body-pat' src='./duck/patterns/tiedye.jpg' title="Expand your mind">
+                </div>
+              </div>
+          </div>
+      </div>
+
+      </div>
+
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcanvas/21.0.1/min/jcanvas.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/create-duck.js"></script>
