@@ -254,17 +254,6 @@ function drawHat() {
   });
 }
 
-function hatButton() {
-  if (hatOn) {
-    $('canvas').removeLayer('hat');
-    $('canvas').drawLayers();
-    hatOn = false;
-  } else {
-    hatOn = true;
-    drawHat();
-  }
-}
-
 drawDuck();
 
 function changeStyle(varlayer, style, val) {
@@ -343,9 +332,18 @@ $('.body-pat').on('click', function() {
   bodyGradientOn = false;
   bodyPatternOn = true;
 });
+
 $('.accessory').on('click', function() {
   $('#showaccessory').attr('src', $(this).attr('src'));
   hatsrc = $(this)
     .attr('src')
     .replace('./duck/accessories/', '');
+  hatOn = true;
+  drawHat();
+});
+
+$('.nohat').on('click', function() {
+  $('canvas').removeLayer('hat');
+  $('canvas').drawLayers();
+  hatOn = false;
 });

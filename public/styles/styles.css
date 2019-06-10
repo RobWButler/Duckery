@@ -180,18 +180,18 @@ input[type=color]{
   cursor: pointer;
 }
 
-.accessory{
+.accessory, .nohat{
   height: 100px;
   width: 100px;
   cursor: pointer;
   background: transparent;
 }
 
-.pattern:hover, .accessory:hover{
+.pattern:hover, .accessory:hover, .nohat:hover{
   border-color:black;
   background-color: yellow;
-
 }
+
 .custommenus{
   flex: content;
 }
