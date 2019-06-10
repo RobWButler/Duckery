@@ -7,7 +7,6 @@ html, body {
   height: 100%;
   box-sizing: border-box;
   cursor: crosshair;
-  background: #4682B4;
 }
 
 *, *:before, *:after {
@@ -240,9 +239,10 @@ input:checked ~ .duck-row__img:after {
   font-family: 'EB Garamond', serif;
   color: black!important;
 }
-body{
-  background-image: url(../media/blue2.jpg);
-  background-size: cover;
+.container-body{
+  position: absolute;
+  padding: 0!important;
+  width: 100%;
 }
 .navbar{
   border-bottom: solid 2px rgb(255, 217, 0); 
@@ -322,9 +322,9 @@ footer {
   border-top: 2px solid rgb(255, 217, 0);
   font-family: 'Merienda', cursive;
   -webkit-text-stroke: .5px black;
-  position: absolute;
+  position: absolute!important;
   width: 100%;
-  bottom: -300px;
+  bottom: -510px!important;
   padding-top: 18px;
 }
 
