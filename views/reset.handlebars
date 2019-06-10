@@ -1,12 +1,11 @@
 <div class="container">
-     <form method="POST" action="/reset/{{token}}" class="form-signup">
-            <label for="inputPassword" class="sr-only mt-2"> New Password</label>
-            <input type="password" id="inputPassword" name="password" class="form-control mt-2 password"
-              placeholder="New Password" required="">
-            <label for="inputPassword" class="sr-only mt-2">Enter Password Again</label>
-            <input type="password" id="inputPassword" name="password2" class="form-control mt-2 password2"
-              placeholder="Password again" required="">
-          
-            <button class="btn btn-lg btn-primary btn-block mt-2" name="submit" type="submit"> Update Password</button>
-    </form>
+  <form method="POST" action="/reset/{{token}}" class="form-signup">
+   <input type="password" id="inputPassword" name="password" class="form-control mt-2 password"
+      placeholder="New Password" required=""/>
+   <label for="inputPassword" class="sr-only mt-2"> New Password</label>
+   <input type="password" id="inputPassword" name="password2" class="form-control mt-2 password2"
+     placeholder="Password again" required=""/>
+   <label for="inputPassword" class="sr-only mt-2">Enter Password Again</label>
+   <button class="btn btn-lg btn-primary btn-block mt-2" name="submit" type="submit"> Update Password</button>
+  </form>
 </div>
