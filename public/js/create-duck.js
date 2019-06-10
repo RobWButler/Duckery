@@ -61,21 +61,21 @@ var bodyPatsrc = '';
 // eslint-disable-next-line no-unused-vars
 const headPat = function(layer) {
   return $(this).createPattern({
-    source: '../duck/patterns/' + headPatsrc,
+    source: headPatsrc,
     repeat: 'repeat'
   });
 };
 // eslint-disable-next-line no-unused-vars
 const billPat = function(layer) {
   return $(this).createPattern({
-    source: '../duck/patterns/' + billPatsrc,
+    source: billPatsrc,
     repeat: 'repeat'
   });
 };
 // eslint-disable-next-line no-unused-vars
 const bodyPat = function(layer) {
   return $(this).createPattern({
-    source: '../duck/patterns/' + bodyPatsrc,
+    source: bodyPatsrc,
     repeat: 'repeat'
   });
 };
@@ -248,7 +248,7 @@ function drawHat() {
     shadowBlur: 15,
     shadowX: 0,
     shadowY: 5,
-    source: '../duck/accessories/' + hatsrc,
+    source: hatsrc,
     x: 200,
     y: 200
   });
