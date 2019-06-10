@@ -310,7 +310,7 @@ module.exports = function(app) {
 
             if (errors) {
               console.log('Errors: ' + JSON.stringify(errors));
-              res.render('/reset/:token', { errors: errors });
+              res.render('reset', { errors: errors, token: req.params.token });
             } else {
               bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
                 if (err) {
