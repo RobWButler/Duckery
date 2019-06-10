@@ -8,7 +8,6 @@ const crypto = require('crypto');
 
 module.exports = function(app) {
   // Home page
-
   app.get('/', function(req, res) {
     res.render('home', { style: 'styles' });
     console.log(req.user);
@@ -20,13 +19,11 @@ module.exports = function(app) {
   });
 
   // Chat page
-
   app.get('/chat', function(req, res) {
     res.render('chat');
   });
 
   // Login routes
-
   app.get('/login', function(req, res) {
     res.render('login', { style: 'styles' });
   });
@@ -40,7 +37,6 @@ module.exports = function(app) {
   );
 
   // Logout routes
-
   app.get('/logout', authenticationMiddleware(), function(req, res) {
     req.logout();
     req.session.destroy();
@@ -48,7 +44,6 @@ module.exports = function(app) {
   });
 
   // Sign up routes
-
   app.get('/signup', function(req, res) {
     res.render('signup', { style: 'styles' });
   });
@@ -142,7 +137,6 @@ module.exports = function(app) {
   }
 
   //Mini games routes
-
   app.get('/minigames', function(req, res) {
     res.render('minigames', { style: 'styles' });
   });
@@ -160,7 +154,6 @@ module.exports = function(app) {
   });
 
   //Forgot password routes
-
   app.get('/forgot', function(req, res) {
     res.render('forgot');
   });
@@ -360,7 +353,6 @@ module.exports = function(app) {
   });
 
   // Render 404 page for any unmatched routes
-
   app.get('*', function(req, res) {
     res.render('404', { style: 'styles' });
   });
