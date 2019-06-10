@@ -1,163 +1,94 @@
-//var User = require("../../models/index");
+// The API object contains methods for each kind of request we'll make
+var API = {
+  saveDuck: function(duck) {
+    return $.ajax({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      type: 'POST',
+      url: 'api/ducks',
+      data: JSON.stringify(duck)
+    });
+  },
+  getDucks: function() {
+    return $.ajax({
+      url: '/api/ducks',
+      type: 'GET'
+    });
+  },
+  deleteExample: function(id) {
+    return $.ajax({
+      url: 'api/ducks/' + id,
+      type: 'DELETE'
+    });
+  }
+};
 
-// // Get references to page elements
-// var $exampleText = $("#example-text");
-// var $exampleDescription = $("#example-description");
-// var $submitBtn = $("#submit");
-// var $exampleList = $("#example-list");
+//Check if the fillStyle is a function (so the parameters for the function can be passed)
+//or a solid color (so the hex value can be passed)
+function funcStyleCheck(toCheck, checkLayer) {
+  if (typeof toCheck === 'function') {
+    if (toCheck === headGrad || toCheck === bodyGrad) {
+      return 'grad';
+    } else if (
+      toCheck === headPat ||
+      toCheck === billPat ||
+      toCheck === bodyPat
+    ) {
+      return 'pat';
+    }
+  } else {
+    return $('canvas').getLayer(checkLayer).fillStyle;
+  }
+}
 
-// // The API object contains methods for each kind of request we'll make
-// var API = {
-//   saveExample: function(example) {
-//     return $.ajax({
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       type: "POST",
-//       url: "/login",
-//       data: JSON.stringify(example)
-//     });
-//   },
-//   getExamples: function() {
-//     return $.ajax({
-//       url: "api/examples",
-//       type: "GET"
-//     });
-//   },
-//   deleteExample: function(id) {
-//     return $.ajax({
-//       url: "api/examples/" + id,
-//       type: "DELETE"
-//     });
-//   }
-// };
+// handleFormSubmit is called whenever we submit a new example
+// Save the new example to the db and refresh the list
+var handleFormSubmit = function(event) {
+  event.preventDefault();
 
-// // refreshExamples gets new examples from the db and repopulates the list
-// var refreshExamples = function() {
-//   API.getExamples().then(function(data) {
-//     var $examples = data.map(function(example) {
-//       var $a = $("<a>")
-//         .text(example.text)
-//         .attr("href", "/example/" + example.id);
+  var $head = funcStyleCheck($('canvas').getLayer('head').fillStyle, 'head');
+  var $bill = funcStyleCheck($('canvas').getLayer('bill').fillStyle, 'bill');
+  var $body = funcStyleCheck($('canvas').getLayer('body').fillStyle, 'body');
+  if (hatOn) {
+    var $hat = hatsrc;
+  }
+  if (headGradientOn) {
+    var $headgradient = headGradsrc.c1 + ',' + headGradsrc.c2;
+  }
+  if (headPatternOn) {
+    var $headpattern = headPatsrc;
+  }
+  if (billPatternOn) {
+    var $billpattern = billPatsrc;
+  }
+  if (bodyGradientOn) {
+    var $bodygradient = bodyGradsrc.c1 + ',' + bodyGradsrc.c2;
+  }
+  if (bodyPatternOn) {
+    var $bodypattern = bodyPatsrc;
+  }
 
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": example.id
-//         })
-//         .append($a);
+  var duck = {
+    head: $head,
+    bill: $bill,
+    body: $body,
+    hat: $hat,
+    headgradient: $headgradient,
+    headpattern: $headpattern,
+    billpattern: $billpattern,
+    bodygradient: $bodygradient,
+    bodypattern: $bodypattern
+  };
 
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
+  API.saveDuck(duck).then(function() {
+    //refreshExamples();
+  });
+};
 
-//       $li.append($button);
-
-//       return $li;
-//     });
-
-//     $exampleList.empty();
-//     $exampleList.append($examples);
-//   });
-// };
-
-// // handleFormSubmit is called whenever we submit a new example
-// // Save the new example to the db and refresh the list
-// var handleFormSubmit = function(event) {
-//   event.preventDefault();
-
-//   var example = {
-//     text: $exampleText.val().trim(),
-//     description: $exampleDescription.val().trim()
-//   };
-
-//   if (!(example.text && example.description)) {
-//     alert("You must enter an example text and description!");
-//     return;
-//   }
-
-//   API.saveExample(example).then(function() {
-//     refreshExamples();
-//   });
-
-//   $exampleText.val("");
-//   $exampleDescription.val("");
-// };
-
-// // handleDeleteBtnClick is called when an example's delete button is clicked
-// // Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function() {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
-
-//   API.deleteExample(idToDelete).then(function() {
-//     refreshExamples();
-//   });
-// };
-
-// // Add event listeners to the submit and delete buttons
-// //$submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
-
-// $("#submitSU").on("click", function(event) {
-//   event.preventDefault();
-
-//   console.log("hit");
-//   User = {
-//     username: $(".username")
-//       .val()
-//       .trim(),
-//     password: $(".password")
-//       .val()
-//       .trim(),
-//     password2: $(".password2")
-//       .val()
-//       .trim(),
-//     email: $(".email")
-//       .val()
-//       .trim()
-//   };
-//   console.log(User);
-//   $.ajax({
-//     type: "POST",
-//     url: "/signup",
-//     data: User
-//   }).then(function(data) {
-//     console.log(data);
-//     $(".username").val("");
-//     $(".password").val("");
-//     $(".password2").val("");
-//     $(".email").val("");
-//   });
-// });
-
-// $(".form-signup").on("submit", function() {
-//   User = {
-//     username: $(".username")
-//       .val()
-//       .trim(),
-//     password: $(".password")
-//       .val()
-//       .trim(),
-//     password2: $(".password2")
-//       .val()
-//       .trim(),
-//     email: $(".email")
-//       .val()
-//       .trim()
-//   };
-//   console.log(User);
-//   $.ajax({
-//     type: "POST",
-//     url: "/signup",
-//     data: User
-//   }).then(function(data) {
-//     console.log(data);
-//     $(".username").val("");
-//     $(".password").val("");
-//     $(".password2").val("");
-//     $(".email").val("");
-//   });
-//   return false;
-// });
+// Add event listeners to the submit and delete buttons
+$('#submit').on('click', handleFormSubmit);
+$('#submit').on('click', function() {
+  alert('Your duck has been created!');
+  location.reload();
+});
