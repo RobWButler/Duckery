@@ -1,13 +1,13 @@
 // eslint-disable-next-line no-unused-vars
-var headGradientOn = false;
+var headGradientOn = '';
 // eslint-disable-next-line no-unused-vars
-var bodyGradientOn = false;
+var bodyGradientOn = '';
 // eslint-disable-next-line no-unused-vars
-var headPatternOn = false;
+var headPatternOn = '';
 // eslint-disable-next-line no-unused-vars
-var billPatternOn = false;
+var billPatternOn = '';
 // eslint-disable-next-line no-unused-vars
-var bodyPatternOn = false;
+var bodyPatternOn = '';
 
 $('#download').on('click', function() {
   console.log('Download');
