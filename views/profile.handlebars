@@ -54,7 +54,11 @@
           <ul style="list-style: none">
             <li class="mt-1"><b>Account Name:</b> some Name</li>
             <li class="mt-1"><b>Email:</b> some@email.com</li>
-            <li class="mt-1"><b>Password:</b><a href="/forgot"><button id="reset-password" type="button" class="btn btn-primary btn-sm">Reset Password</button></li></a>
+            <li class="mt-1"><b>Password:</b>
+              <a href="/forgot">
+                 <button id="reset-password" type="button" class="btn btn-primary btn-sm">Reset Password</button>
+              </a>
+            </li>
             <li><b>Your Duck:</b>
               <div class="account-duck">
                 <button id="edit-duck" type="button" data-toggle="tooltip" data-placement="top" title="Edit Duck">
@@ -117,3 +121,5 @@
     $('[data-toggle="tooltip"]').tooltip()
   })
 </script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

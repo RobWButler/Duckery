@@ -133,3 +133,79 @@ input:checked ~ .main-content {
 .social-icons, .footer-links {
   list-style-type: none;
 }
+
+
+canvas{
+  border: dotted rgba(0, 0, 0, 0.5) 2px;
+  border-radius: 10px;
+}
+
+.viewcanvas{
+  border-color:transparent;
+}
+
+.navbar{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 22pt;
+  padding: 1.5rem;
+}
+
+a{
+  color: gray;
+  background-color: rgb(245, 245, 245);
+}
+
+a:link{
+  text-decoration: none;
+}
+
+a:hover{
+  background-color: rgb(207, 207, 207);
+}
+
+input[type=color]{
+  cursor: pointer;
+  height:40px;
+  width:40px;
+}
+
+.custommenus{
+  background-color: rgb(255, 255, 255, 0.4);
+  border-radius: 5px
+}
+
+.pattern{
+  max-height: 80px;
+  max-width: 80px;
+  cursor: pointer;
+}
+
+.accessory, .nohat{
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+  background: transparent;
+}
+
+.pattern:hover, .accessory:hover, .nohat:hover{
+  border-color:black;
+  background-color: yellow;
+}
+
+.custommenus{
+  flex: content;
+}
+
+.patpreview{
+  max-height: 40px;
+  max-width: 40px;
+}
+
+.accpreview{
+  max-height: 50px;
+  max-width: 50px;
+}
+
+#duck-creator{
+  height:100%
+}
