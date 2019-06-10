@@ -4,6 +4,8 @@ const expressValidator = require('express-validator');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const passport = require('passport');
+const serve = require('express-static');
+const flash = require('connect-flash');
 
 const config = require('../config/config.js');
 
@@ -38,6 +40,13 @@ module.exports = app => {
   // Passport
   app.use(passport.initialize());
   app.use(passport.session());
+
+  // Serve
+  app.use(serve(__dirname + '/public'));
+  app.use(serve(__dirname + '/public/duck'));
+
+  // Flash
+  app.use(flash());
 
   // Handlebars
   app.engine(
