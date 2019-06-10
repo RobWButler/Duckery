@@ -1,4 +1,3 @@
-const path = require('path');
 const exphbs = require('express-handlebars');
 const express = require('express');
 const expressValidator = require('express-validator');
