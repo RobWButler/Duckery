@@ -5,13 +5,16 @@ let env = {};
 switch (process.NODE_ENV) {
   case 'production':
   case 'prod':
+    process.env.NODE_ENV = 'production'
     env = environmentJson.production;
     break;
   case 'development':
   case 'dev':
+    process.env.NODE_ENV = 'development'
     env = environmentJson.development;
     break;
   case 'test':
+    process.env.NODE_ENV = 'test'
     env = environmentJson.test;
     break;
   default:

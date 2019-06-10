@@ -5,6 +5,8 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const passport = require('passport');
 
+const flash = require('connect-flash');
+
 const config = require('../config/config.js');
 
 module.exports = app => {
@@ -38,6 +40,9 @@ module.exports = app => {
   // Passport
   app.use(passport.initialize());
   app.use(passport.session());
+
+  // Flash
+  app.use(flash());
 
   // Handlebars
   app.engine(
