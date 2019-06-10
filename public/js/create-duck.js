@@ -31,7 +31,7 @@ var bodyGradsrc = {
   c2: ''
 };
 
-const headGrad = function(layer) {
+var headGrad = function(layer) {
   return $(this).createGradient({
     // Gradient is drawn relative to layer position
     x1: 0,
@@ -44,7 +44,7 @@ const headGrad = function(layer) {
 };
 
 // eslint-disable-next-line no-unused-vars
-const bodyGrad = function(layer) {
+var bodyGrad = function(layer) {
   return $(this).createGradient({
     // Gradient is drawn relative to layer position
     x1: 0,
@@ -317,41 +317,31 @@ $('#grad_body').on('click', function() {
 
 /* Apply Pattern Functions
  */
-$('#patt_head').on('click', function() {
-  changeStyle('head', colGradPat.head.pattern, colGradPat.head.pattern);
-  headGradientOn = false;
-  headPatternOn = true;
-});
-
-$('#patt_body').on('click', function() {
-  changeStyle('body', colGradPat.body.pattern, colGradPat.body.pattern);
-  bodyGradientOn = false;
-  bodyPatternOn = true;
-});
-
-$('#patt_bill').on('click', function() {
-  changeStyle('bill', colGradPat.bill.pattern, colGradPat.bill.pattern);
-  billPatternOn = true;
-});
-
-//
 $('.head-pat').on('click', function() {
   $('#showheadPat').attr('src', $(this).attr('src'));
   headPatsrc = $(this)
     .attr('src')
     .replace('./duck/patterns/', '');
+  changeStyle('head', colGradPat.head.pattern, colGradPat.head.pattern);
+  headGradientOn = false;
+  headPatternOn = true;
 });
 $('.bill-pat').on('click', function() {
   $('#showbillPat').attr('src', $(this).attr('src'));
   billPatsrc = $(this)
     .attr('src')
     .replace('./duck/patterns/', '');
+  changeStyle('bill', colGradPat.bill.pattern, colGradPat.bill.pattern);
+  billPatternOn = true;
 });
 $('.body-pat').on('click', function() {
   $('#showbodyPat').attr('src', $(this).attr('src'));
   bodyPatsrc = $(this)
     .attr('src')
     .replace('./duck/patterns/', '');
+  changeStyle('body', colGradPat.body.pattern, colGradPat.body.pattern);
+  bodyGradientOn = false;
+  bodyPatternOn = true;
 });
 $('.accessory').on('click', function() {
   $('#showaccessory').attr('src', $(this).attr('src'));

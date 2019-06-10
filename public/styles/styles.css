@@ -140,6 +140,10 @@ canvas{
   border-radius: 10px;
 }
 
+.viewcanvas{
+  border-color:transparent;
+}
+
 .navbar{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 22pt;

@@ -28,11 +28,13 @@ var API = {
 //or a solid color (so the hex value can be passed)
 function funcStyleCheck(toCheck, checkLayer) {
   if (typeof toCheck === 'function') {
-    if (toCheck === headGrad || bodyGrad) {
+    if (toCheck === headGrad || toCheck === bodyGrad) {
       return 'grad';
-    }
-
-    if (toCheck === headPat || billPat || bodyPat) {
+    } else if (
+      toCheck === headPat ||
+      toCheck === billPat ||
+      toCheck === bodyPat
+    ) {
       return 'pat';
     }
   } else {
