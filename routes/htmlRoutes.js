@@ -145,6 +145,18 @@ module.exports = function(app) {
     res.render('duckshot', { style: 'duckshot' });
   });
 
+  app.get('/createduck', function(req, res) {
+    res.render('createduck', { style: 'styles' });
+  });
+
+  app.get('/viewduck/:id', function(req, res) {
+    res.render('viewduck', {
+      style: 'styles',
+      duck: res,
+      id: req.params.id - 1
+    });
+  });
+
   app.get('/askduck', function(req, res) {
     res.render('askduck', { style: 'askduck', script: 'askduck' });
   });
@@ -298,7 +310,7 @@ module.exports = function(app) {
 
             if (errors) {
               console.log('Errors: ' + JSON.stringify(errors));
-              res.render('/reset/:token', { errors: errors });
+              res.render('reset', { errors: errors, token: req.params.token });
             } else {
               bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
                 if (err) {
