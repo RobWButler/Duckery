@@ -3,15 +3,16 @@ const serve = require('express-static');
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const flash = require('connect-flash');
 const config = require('./config/config.js');
 const db = require('./models');
-
 const PORT = process.env.PORT || 3000;
 
 // Express config
 const { passport } = require('./config/express-config')(app);
 
 // Passport config
+app.use(flash());
 require('./config/passport-config')(passport);
 
 // Mount sockets listeners

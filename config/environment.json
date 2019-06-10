@@ -8,12 +8,11 @@
     "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
   },
   "test": {
-    "username": "root",
-    "password": "root",
-    "database": "testdb",
+    "username": "dderrickmatheww",
+    "password": "Blind5656!",
+    "database": "exampledb",
     "host": "localhost",
     "dialect": "mysql",
-    "logging": false,
     "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
   },
   "production": {
