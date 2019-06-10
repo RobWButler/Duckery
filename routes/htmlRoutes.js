@@ -2,9 +2,13 @@ const db = require('../models');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const nodemailer = require('nodemailer');
+const async = require('async');
+const crypto = require('crypto');
 
 module.exports = function(app) {
-  // Load index page
+  // Home page
+
   app.get('/', function(req, res) {
     res.render('chat');
     console.log(req.user);
@@ -15,17 +19,16 @@ module.exports = function(app) {
     res.render('profile');
   });
 
-  app.get('/login', function(req, res) {
-    res.render('login');
-  });
-
-  app.get('/signup', function(req, res) {
-    res.render('signup');
-  });
-
   // Chat page
+
   app.get('/chat', function(req, res) {
     res.render('chat');
+  });
+
+  // Login routes
+
+  app.get('/login', function(req, res) {
+    res.render('login');
   });
 
   app.post(
@@ -36,10 +39,18 @@ module.exports = function(app) {
     })
   );
 
+  // Logout routes
+
   app.get('/logout', authenticationMiddleware(), function(req, res) {
     req.logout();
     req.session.destroy();
     res.redirect('/login');
+  });
+
+  // Sign up routes
+
+  app.get('/signup', function(req, res) {
+    res.render('signup');
   });
 
   app.post('/signup', function(req, res) {
@@ -129,17 +140,207 @@ module.exports = function(app) {
       res.redirect('/');
     };
   }
-  // Load example page and pass in an example by id
-  app.get('/example/:id', function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.render('example', {
-        example: dbExample
-      });
+
+  //Forgot password routes
+
+  app.get('/forgot', function(req, res) {
+    res.render('forgot');
+  });
+
+  app.post('/forgot', function(req, res, next) {
+    async.waterfall(
+      [
+        function(done) {
+          crypto.randomBytes(10, function(err, buf) {
+            var token = buf.toString('hex');
+            done(err, token);
+          });
+        },
+        function(token, done) {
+          db.User.findOne({ where: { email: req.body.email } }).then(function(
+            user
+          ) {
+            if (!user) {
+              req.flash('error', 'No account with that email address exists.');
+              return res.redirect('/forgot');
+            }
+            user.resetPasswordToken = token;
+            user.resetPasswordExpires = Date.now() + 3600000;
+            console.log(token);
+            user.save().then(function(user, err) {
+              console.log('got it');
+              done(err, token, user);
+            });
+          });
+        },
+        function(token, user, done) {
+          // console.log(token);
+          console.log(user);
+          var smtpTransport = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+              user: 'duckeryduckeryduckery@gmail.com',
+              pass: 'Ducks4life!!'
+            }
+          });
+          var mailOptions = {
+            to: user.email,
+            from: 'duckeryduckeryduckery@gmail.com',
+            subject:
+              'Lets get quackin on reseting your password ' + user.username,
+            text:
+              'You are receiving this because you (or a hacker) have requested the reset of your current password with Duckery!' +
+              '\n\n' +
+              'Please click on the link below to reset your password!' +
+              '\n\n' +
+              'http://' +
+              req.headers.host +
+              '/reset/' +
+              token +
+              '\n\n' +
+              'If you did not request this, please ignore!' +
+              '\n\n' +
+              'Thank you,' +
+              '\n\n' +
+              'The Duckery Team'
+          };
+          smtpTransport.sendMail(mailOptions, function(err) {
+            console.log('mail-sent');
+            req.flash(
+              'success',
+              'An email has been sent to ' +
+                user.email +
+                ' with further instructions.'
+            );
+            done(err, 'done');
+          });
+        }
+      ],
+      function(err) {
+        if (err) {
+          return next(err);
+        } else {
+          res.redirect('/forgot');
+        }
+      }
+    );
+  });
+
+  app.get('/reset/:token', function(req, res) {
+    db.User.findOne({
+      where: {
+        resetPasswordToken: req.params.token,
+        resetPasswordExpires: { $gt: Date.now() }
+      }
+    }).then(function(user) {
+      if (!user) {
+        req.flash('error', 'Password reset token is invalid or has expired');
+        return res.redirect('/forgot');
+      } else {
+        res.render('reset', { token: req.params.token });
+      }
     });
   });
 
+  app.post('/reset/:token', function(req, res) {
+    async.waterfall(
+      [
+        function(done) {
+          db.User.findOne({
+            where: {
+              resetPasswordToken: req.params.token,
+              resetPasswordExpires: { $gt: Date.now() }
+            }
+          }).then(function(user) {
+            if (!user) {
+              req.flash(
+                'error',
+                'Password reset token is invalid or has expired.'
+              );
+              return res.redirect('back');
+            }
+            req
+              .checkBody(
+                'password',
+                'Password must be between 8-100 characters long.'
+              )
+              .len(8, 100);
+            req
+              .checkBody(
+                'password',
+                'Password must include one lowercase character, one uppercase character, a number, and a special character.'
+              )
+              .matches(
+                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/,
+                'i'
+              );
+            req
+              .checkBody(
+                'password2',
+                'Password must be between 8-100 characters long.'
+              )
+              .len(8, 100);
+            req
+              .checkBody(
+                'password2',
+                'Passwords do not match, please try again.'
+              )
+              .equals(req.body.password);
+
+            var errors = req.validationErrors();
+
+            if (errors) {
+              console.log('Errors: ' + JSON.stringify(errors));
+              res.render('/reset/:token', { errors: errors });
+            } else {
+              bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+                if (err) {
+                  throw err;
+                }
+
+                user.update({ password: hash }).then(function(user) {
+                  user.resetPasswordToken = undefined;
+                  user.resetPasswordExpires = undefined;
+
+                  user.save().then(function(user) {
+                    req.logIn(user, function(err) {
+                      done(err, user);
+                    });
+                  });
+                });
+              });
+            }
+          });
+        },
+        function(user, done) {
+          var smtpTransport = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+              user: 'duckeryduckeryduckery@gmail.com',
+              pass: 'Ducks4life!!'
+            }
+          });
+          var mailOptions = {
+            to: user.email,
+            from: 'learntocodeinfo@mail.com',
+            subject: 'Your password has been changed',
+            text:
+              'Hello,\n\n' +
+              'This is a confirmation that the password for your account ' +
+              user.email +
+              ' has just been changed.\n'
+          };
+          smtpTransport.sendMail(mailOptions, function(err) {
+            req.flash('success', 'Success! Your password has been changed.');
+            done(err);
+          });
+        }
+      ],
+      function(err) {
+        res.redirect('/login');
+      }
+    );
+  });
   // Render 404 page for any unmatched routes
   app.get('*', function(req, res) {
     res.render('404');

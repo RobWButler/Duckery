@@ -4,7 +4,9 @@ module.exports = function(sequelize, DataTypes) {
     password: { type: DataTypes.STRING, allowNull: false },
     email: { type: DataTypes.STRING, unique: true, allowNull: false },
     duckbucks: DataTypes.INTEGER,
-    achievements: DataTypes.TEXT
+    achievements: DataTypes.TEXT,
+    resetPasswordToken: DataTypes.STRING,
+    resetPasswordExpires: DataTypes.DATE
   });
   return User;
 };
