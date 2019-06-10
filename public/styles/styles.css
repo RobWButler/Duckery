@@ -31,6 +31,17 @@ body{
   position: absolute;
   width: 100%;
 }
+#backHome {
+  text-shadow: none;
+  font-family: 'EB Garamond', serif;
+  font-size: 30px;
+}
+#signup,#submitSU,#login {
+  font-family: 'Merienda', cursive;
+}
+#submitSU:hover,#submitL:hover {
+  color: rgb(255, 217, 0) !important;
+}
 .navbar{
   border-bottom: solid 2px rgb(255, 217, 0); 
 }
@@ -40,9 +51,8 @@ body{
 .nav-link:hover{
   color: rgb(255, 217, 0) !important;
   text-shadow:
-    2px 2px 2px rgba(0, 0, 0, 0.856);  
+    2px 2px 2px rgba(0, 0, 0, 0.856);
 }
-
 h1 {
   font-size: 55px;
 }
