@@ -1,14 +1,14 @@
 $(document).ready(function() {
   // eslint-disable-next-line no-unused-vars
-  var headGradientOn = false;
+  var headGradientOn = '';
   // eslint-disable-next-line no-unused-vars
-  var bodyGradientOn = false;
+  var bodyGradientOn = '';
   // eslint-disable-next-line no-unused-vars
-  var headPatternOn = false;
+  var headPatternOn = '';
   // eslint-disable-next-line no-unused-vars
-  var billPatternOn = false;
+  var billPatternOn = '';
   // eslint-disable-next-line no-unused-vars
-  var bodyPatternOn = false;
+  var bodyPatternOn = '';
 
   $('#download').on('click', function() {
     console.log('Download');
@@ -80,6 +80,66 @@ $(document).ready(function() {
       repeat: 'repeat'
     });
   };
+
+  var colGradPat = {
+    head: {
+      color: '#ffff00',
+      pattern: headPat,
+      gradient: headGrad
+    },
+    body: {
+      color: '#ffff00',
+      pattern: bodyPat,
+      gradient: bodyGrad
+    },
+    bill: {
+      color: '#ffa500',
+      pattern: billPat
+    }
+  };
+
+  function drawBody() {
+    $('canvas').removeLayerGroup('body');
+
+    $('canvas')
+      .drawEllipse({
+        layer: true,
+        name: 'body',
+        groups: ['body', 'duck'],
+        index: 0,
+        strokeStyle: '#000',
+        strokeWidth: 3,
+        fillStyle: colGradPat.body.color,
+        shadowColor: 'rgb(0, 0, 0, 0.5)',
+        shadowBlur: 15,
+        shadowX: 4,
+        shadowY: 10,
+        x: 210,
+        y: 230,
+        width: 200,
+        height: 150
+      })
+      .drawBezier({
+        layer: true,
+        name: 'wing',
+        groups: ['body', 'beziers'],
+        index: 1,
+        strokeStyle: 'rgb(0,0,0, 0.5)',
+        fillStyle: 'rgb(0,0,0, 0.04)',
+        strokeWidth: 3,
+        x1: 205,
+        y1: 280,
+        cx1: 225,
+        cy1: 310,
+        cx2: 375,
+        cy2: 210,
+        x2: 205,
+        y2: 240
+      });
+  }
+
+  function drawHead() {
+    $('canvas').removeLayerGroup('head');
 
     $('canvas')
       .drawEllipse({
@@ -189,7 +249,7 @@ $(document).ready(function() {
       shadowBlur: 15,
       shadowX: 0,
       shadowY: 5,
-      source: '../duck/accessories/' + hatsrc,
+      source: hatsrc,
       x: 200,
       y: 200
     });
@@ -207,28 +267,9 @@ $(document).ready(function() {
     }
     $('canvas').drawLayers();
   }
-}
-var hatsrc = 'l3helmet.svg';
-function drawHat() {
-  $('canvas').removeLayer('hat');
-  $('canvas').drawImage({
-    name: 'hat',
-    groups: ['duck'],
-    imageSmoothing: true,
-    layer: true,
-    index: 10,
-    load: $('canvas').drawLayers(),
-    shadowColor: 'rgb(0, 0, 0, 0.3)',
-    shadowBlur: 15,
-    shadowX: 0,
-    shadowY: 5,
-    source: hatsrc,
-    x: 200,
-    y: 200
-  });
-}
 
-  // Apply Color Functions
+  /* Apply Color Functions
+   */
   $('#head_color').change(function() {
     changeStyle('head', colGradPat.head.color, $('#head_color').val());
     headPatternOn = false;
@@ -246,7 +287,8 @@ function drawHat() {
     bodyGradientOn = false;
   });
 
-  // Apply Gradient Functions
+  /* Apply Gradient Functions
+   */
   $('#grad_head').on('click', function() {
     headGradsrc.c1 = $('#head_c1_color').val();
     headGradsrc.c2 = $('#head_c2_color').val();
@@ -263,7 +305,8 @@ function drawHat() {
     bodyPatternOn = false;
   });
 
-  // Apply Pattern Functions
+  /* Apply Pattern Functions
+   */
   $('.head-pat').on('click', function() {
     $('#showheadPat').attr('src', $(this).attr('src'));
     headPatsrc = $(this)
