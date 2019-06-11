@@ -6,6 +6,7 @@
     "host": "localhost",
     "dialect": "mysql",
     "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
+    
   },
   "test": {
     "username": "dderrickmatheww",
@@ -19,5 +20,6 @@
     "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql",
     "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
-  }
+  },
+  "NODE_ENV": "development"
 }

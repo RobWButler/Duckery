@@ -102,33 +102,27 @@ module.exports = app => {
           username: req.body.username,
           password: hash,
           email: req.body.email
-        }).then(function() {
-          db.sequelize
-            .query('SELECT LAST_INSERT_ID() as userId')
-            .then(function(result) {
-              console.log(result[0]);
-              var userId = result[0];
-              console.log(userId);
-              req.login(userId, function(err) {
-                if (err) {
-                  throw err;
-                }
-                res.redirect('/');
+        })
+          .then(function() {
+            db.sequelize
+              .query('SELECT LAST_INSERT_ID() as userId')
+              .then(function(result) {
+                console.log(result[0]);
+                var userId = result[0];
+                console.log(userId);
+                req.login(userId, function(err) {
+                  if (err) {
+                    throw err;
+                  }
+                  res.redirect('/');
+                });
               });
-            });
-        });
+          })
+          .catch(err => {
+            console.log(err);
+          });
       });
     }
-  });
-
-  passport.serializeUser(function(user, done) {
-    done(null, user);
-  });
-
-  passport.deserializeUser(function(user, done) {
-    // db.User.findById(id, function(err, user) {
-    done(null, user);
-    // });
   });
 
   // Forgot password page
