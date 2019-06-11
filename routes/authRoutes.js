@@ -7,11 +7,14 @@ const crypto = require('crypto');
 const db = require('../models');
 
 const saltRounds = 10;
+const cssArray = ['styles.css', '/imports/bootstrap.min.css'];
 
 module.exports = app => {
   // Login Page
   app.get('/login', function(req, res) {
-    res.render('login', { style: 'styles' });
+    res.render('login', {
+      css: cssArray
+    });
   });
 
   // Login POST route
@@ -25,7 +28,9 @@ module.exports = app => {
 
   // Sign up page
   app.get('/signup', function(req, res) {
-    res.render('signup', { style: 'styles' });
+    res.render('signup', {
+      css: cssArray
+    });
   });
 
   // Logout page
@@ -37,7 +42,9 @@ module.exports = app => {
 
   // Profile page
   app.get('/profile', authenticationMiddleware(), function(req, res) {
-    res.render('profile', { style: 'styles' });
+    res.render('profile', {
+      css: cssArray
+    });
   });
 
   function authenticationMiddleware() {
@@ -127,7 +134,9 @@ module.exports = app => {
 
   // Forgot password page
   app.get('/forgot', function(req, res) {
-    res.render('forgot');
+    res.render('forgot', {
+      css: cssArray
+    });
   });
 
   // Forgot POST route
@@ -218,7 +227,10 @@ module.exports = app => {
         req.flash('error', 'Password reset token is invalid or has expired');
         return res.redirect('/forgot');
       } else {
-        res.render('reset', { token: req.params.token });
+        res.render('reset', {
+          css: cssArray,
+          token: req.params.token
+        });
       }
     });
   });
