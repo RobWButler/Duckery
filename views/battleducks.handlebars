@@ -1,40 +1,33 @@
- <container class="background">
-    <h1>Welcome to Duck Battles!</h1>
-    <button type="button" class="btn btn-secondary" id="new-game">
-      Start A New Game
-    </button>
+<container class="background">
 
-    <h2 id="chooseFighter">Choose your fighter!</h2>
-
-    <div class="container-fluid" id="fighter">
-      <div class="row">
-        <div class="col-12 col-md-3">
-          <div id="character-list">
-            <!-- <div class="character">
-                    <div class="character-stats">
-
-                    </div>  
-                  </div> -->
-          </div>
+  <h1 id="battleducks-title">Welcome to Duck Battles!</h1>
+  <button type="button" class="btn btn-secondary" id="new-game">
+    Start A New Game
+  </button>
+  <h2 id="chooseFighter">Choose your fighter!</h2>
+  <div class="container-fluid" id="fighter">
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <div id="character-list">
+     <!-- <div class="character">
+            <div class="character-stats"></div>  
+          </div> -->
         </div>
-
-        <div class="col-12 col-md-9">
-          <div id="character-grid">
-            <div class="active-character" id="player">
-              <div class="active-character-stats" id="player-stats"></div>
-            </div>
-
-            <div class="active-character" id="computer">
-              <div class="active-character-stats" id="computer-stats">
-                
-              </div>
-            </div>
-    <button type="button" class="btn btn-secondary" id="attack"><i class="fab fa-rebel"></i> Attack!
+      </div>
+      <div class="col-12 col-md-9">
+        <div id="character-grid">
+          <div class="active-character" id="player">
+            <div class="active-character-stats" id="player-stats"></div>
           </div>
+          <div class="active-character" id="computer">
+            <div class="active-character-stats" id="computer-stats"></div>
+          </div>
+          <button type="button" class="btn btn-secondary" id="attack">
+            <i class="fab fa-rebel"></i> Attack!
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-    </button>
 </container>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

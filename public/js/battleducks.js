@@ -103,7 +103,7 @@ function printCharacters(characterArray) {
     charStats
       .addClass('character-stats')
       .html(
-        `<h3>${characterInfo.name}</h3>HP: ${
+        `<h3 id="battleducks-h3">${characterInfo.name}</h3>HP: ${
           characterInfo.health
         } <br/>Attack: ${characterInfo.attack}<br/>Counter: ${
           characterInfo.counter
@@ -179,9 +179,11 @@ function attack() {
     computerPicked = false;
     $('#computer-stats')
       .html(
-        `<h3>Defeated!</h3><h4>${computer.name} - Defender</h4>HP: ${
-          computer.health
-        } <br/>Attack: ${computer.attack}<br/>Counter: ${computer.counter}`
+        `<h3 id="battleducks-h3">Defeated!</h3><h4>${
+          computer.name
+        } - Defender</h4>HP: ${computer.health} <br/>Attack: ${
+          computer.attack
+        }<br/>Counter: ${computer.counter}`
       )
       .addClass('defeated');
     // check and see if there are anymore characters left

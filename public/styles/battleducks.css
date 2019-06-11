@@ -2,7 +2,7 @@ body {
   background-color: gray;
 }
 
-h1 {
+#battleducks-title {
   font-size: 40px;
   margin-left: 25%;
   color: black;
@@ -26,7 +26,7 @@ h1 {
   opacity: 1;
 }
 
-h3 {
+#battleducks-h3 {
   font-size: 25px;
   color: black;
   -webkit-text-stroke: .5px gold;
@@ -183,9 +183,6 @@ body{
     2px 2px 2px rgba(0, 0, 0, 0.856);  
 }
 
-h1 {
-  font-size: 55px;
-}
 .jumbotron{
   background-image: url(../images/rubber-duck-wallpaper-3.jpg);
   background-size: contain;
