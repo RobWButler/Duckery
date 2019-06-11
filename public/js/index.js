@@ -42,8 +42,8 @@ function funcStyleCheck(toCheck, checkLayer) {
   }
 }
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
+// handleFormSubmit is called whenever we submit a new Duck
+// Save the new Duck to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
