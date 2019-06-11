@@ -46,9 +46,9 @@ module.exports = app => {
       css: ['styles.css', 'imports/bootstrap.min.css'],
       js: [
         'imports/jcanvas.min.js',
+        'index.js',
         'create-duck.js',
-        'view-duck.js',
-        'index.js'
+        'view-duck.js'
       ],
       duck: res,
       id: req.params.id - 1
