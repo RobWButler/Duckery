@@ -1,17 +1,17 @@
 {
   "development": {
-    "username": "dderrickmatheww",
-    "password": "Blind5656!",
-    "database": "exampledb",
+    "username": "root",
+    "password": "kirby0077",
+    "database": "duckery",
     "host": "localhost",
     "dialect": "mysql",
     "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
     
   },
   "test": {
-    "username": "dderrickmatheww",
-    "password": "Blind5656!",
-    "database": "exampledb",
+    "username": "root",
+    "password": "kirby0077",
+    "database": "duckery",
     "host": "localhost",
     "dialect": "mysql",
     "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
