@@ -61,10 +61,14 @@ module.exports = app => {
     db.Chat.create({
       username: req.user.username,
       message: req.body.message
-    }).catch(err => {
-      if (err) {
-        console.error(err);
-      }
-    });
+    })
+      .then(() => {
+        res.status(200);
+      })
+      .catch(err => {
+        if (err) {
+          console.error(err);
+        }
+      });
   });
 };

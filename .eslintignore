@@ -2,4 +2,5 @@ models/index.js
 node_modules
 config/config.js
 public/js/imports
-public/css/imports
+public/js/imports/bootstrap.bundle.js
+public/styles/imports
