@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
+    "password": "root",
+=======
     "password": "kirby0077",
+>>>>>>> ea0ad8077af31e014edd0c0d88928c79c4132e2f
     "database": "duckery",
     "host": "localhost",
     "dialect": "mysql",
