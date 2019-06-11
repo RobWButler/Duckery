@@ -10,10 +10,10 @@ module.exports = io => {
       io.sockets.emit(events.CHAT, data);
     });
 
-    // Handle typing event
-    socket.on(events.TYPING, data => {
-      // Send typing to everyone except the person typing
-      socket.broadcast.emit(events.TYPING, data);
-    });
+    // // Handle typing event
+    // socket.on(events.TYPING, data => {
+    //   // Send typing to everyone except the person typing
+    //   socket.broadcast.emit(events.TYPING, data);
+    // });
   });
 };
