@@ -31,15 +31,17 @@
     <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         {{#if isAuthenticated}}
-        <a class="nav-item nav-link pr-5 pl-5" href="/logout">Logout</a>
-        <a class="nav-item nav-link pr-5 pl-5" href="/profile">Profile</a>
-        <a class="nav-item nav-link pr-5 pl-5" href="/chat">Chat</a>
+          <a class="nav-item nav-link pr-5 pl-5" href="/profile">Profile</a>
+          <a class="nav-item nav-link pr-5 pl-5" href="/chat">Chat</a>
         {{else}}
-        <a class="nav-item nav-link pr-5 pl-5" href="/signup">Sign up</a>
-        <a class="nav-item nav-link pr-5 pl-5" href="/login">Login</a>
+          <a class="nav-item nav-link pr-5 pl-5" href="/signup">Sign up</a>
+          <a class="nav-item nav-link pr-5 pl-5" href="/login">Login</a>
         {{/if}}
-        <a class="nav-item nav-link pr-5 pl-5" href="/duck/create">Create Coding Ducky</a>
-        <a class="nav-item nav-link pr-5 pl-5 mini" href="/minigames" tabindex="-1" aria-disabled="true">Mini-games</a>
+          <a class="nav-item nav-link pr-5 pl-5" href="/duck/create">Create Coding Ducky</a>
+          <a class="nav-item nav-link pr-5 pl-5 mini" href="/minigames" tabindex="-1" aria-disabled="true">Minigames</a>
+        {{#if isAuthenticated}}
+          <a class="nav-item nav-link pr-5 pl-5" href="/logout">Logout</a>
+        {{/if}}
       </div>
     </div>
   </nav>
@@ -95,7 +97,7 @@
   <script type="text/javascript" src="/js/imports/jquery.min.js"></script>
   <!-- Bootstrap -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  
+
   <!-- Custom scripts -->
   {{#each js}}
     <script type="text/javascript" src="/js/{{this}}"></script>

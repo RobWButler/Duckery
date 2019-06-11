@@ -13,6 +13,7 @@ module.exports = app => {
   // Login Page
   app.get('/login', function(req, res) {
     res.render('login', {
+      title: 'Duckery - Login',
       css: cssArray
     });
   });
@@ -29,6 +30,7 @@ module.exports = app => {
   // Sign up page
   app.get('/signup', function(req, res) {
     res.render('signup', {
+      title: 'Duckery - Signup',
       css: cssArray
     });
   });
@@ -43,6 +45,7 @@ module.exports = app => {
   // Profile page
   app.get('/profile', authenticationMiddleware(), function(req, res) {
     res.render('profile', {
+      title: 'Duckery - Profile',
       css: cssArray
     });
   });
@@ -98,7 +101,11 @@ module.exports = app => {
 
     if (errors) {
       console.log('Errors: ' + JSON.stringify(errors));
-      res.render('signup', { errors: errors });
+      res.render('signup', {
+        title: 'Duckery - Signup',
+        css: cssArray,
+        errors: errors
+      });
     } else {
       bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
         if (err) {
@@ -135,6 +142,7 @@ module.exports = app => {
   // Forgot password page
   app.get('/forgot', function(req, res) {
     res.render('forgot', {
+      title: 'Duckery - Forgot Password',
       css: cssArray
     });
   });
@@ -228,6 +236,7 @@ module.exports = app => {
         return res.redirect('/forgot');
       } else {
         res.render('reset', {
+          title: 'Duckery - Reset Password',
           css: cssArray,
           token: req.params.token
         });
@@ -285,7 +294,11 @@ module.exports = app => {
 
             if (errors) {
               console.log('Errors: ' + JSON.stringify(errors));
-              res.render('/reset/:token', { errors: errors });
+              res.render('/reset/:token', {
+                title: 'Duckery - Reset Password',
+                css: cssArray,
+                errors: errors
+              });
             } else {
               bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
                 if (err) {

@@ -35,7 +35,7 @@ module.exports = app => {
     res.render('createduck', {
       title: 'Duckery - Create A Duck',
       css: ['styles.css', 'imports/bootstrap.min.css'],
-      js: ['create-duck.js', 'index.js', 'imports/jcanvas.min.js']
+      js: ['imports/jcanvas.min.js', 'create-duck.js', 'index.js']
     });
   });
 
@@ -60,18 +60,21 @@ module.exports = app => {
   //Minigames routes
   app.get('/minigames', function(req, res) {
     res.render('minigames', {
+      title: 'Duckery - Minigames',
       css: ['styles.css', 'imports/bootstrap.min.css']
     });
   });
 
   app.get('/minigames/duckshot', function(req, res) {
     res.render('duckshot', {
+      title: 'Duckery - Duckshot',
       css: ['styles.css', 'duckshot.css', 'imports/bootstrap.min.css']
     });
   });
 
   app.get('/minigames/askduck', function(req, res) {
     res.render('askduck', {
+      title: 'Duckery - AskDuck',
       css: ['styles.css', 'askduck.css', 'imports/bootstrap.min.css'],
       js: ['askduck.js', 'imports/siriwave.min.js']
     });
@@ -79,7 +82,8 @@ module.exports = app => {
 
   app.get('/minigames/battleducks', function(req, res) {
     res.render('battleducks', {
-      css: ['styles.css', 'battleducks', 'imports/bootstrap.min.css'],
+      title: 'Duckery - BattleDucks',
+      css: ['styles.css', 'battleducks.css', 'imports/bootstrap.min.css'],
       js: ['battleducks.js']
     });
   });
@@ -87,6 +91,7 @@ module.exports = app => {
   // Render 404 page for any unmatched routes
   app.get('*', function(req, res) {
     res.render('404', {
+      title: 'Duckery - 404',
       css: 'styles.css'
     });
   });
