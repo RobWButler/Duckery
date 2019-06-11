@@ -35,7 +35,7 @@ module.exports = app => {
     res.render('createduck', {
       title: 'Duckery - Create A Duck',
       css: ['styles.css', 'imports/bootstrap.min.css'],
-      js: ['imports/jcanvas.min.js', 'create-duck.js', 'index.js']
+      js: ['imports/jcanvas.min.js', 'index.js', 'create-duck.js']
     });
   });
 
