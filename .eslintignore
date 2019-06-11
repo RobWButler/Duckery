@@ -1,3 +1,5 @@
 models/index.js
 node_modules
 config/config.js
+public/js/imports
+public/styles/imports
