@@ -69,7 +69,7 @@
 (function() {
   const socket = io.connect('http://localhost:3000');
 
-  // Store DOM elements
+  // Select DOM elements
   const message = document.getElementById('message');
   const handle = document.getElementById('handle');
   const sendBtn = document.getElementById('send-chat');
@@ -79,8 +79,6 @@
     const fetchRes = await fetch('/api/get-user', { method: 'GET' })
     if (fetchRes.status === 200) {
       const body = await fetchRes.json()
-      console.log('get username')
-      console.log(body)
       return body.username
     } 
   }
@@ -108,8 +106,6 @@
 
   // Listen for events
   socket.on('chat', data => {
-      console.log('username from response')
-      console.log(data)
     feedback.innerHtml = '';
     chatOutput.innerHTML += `<p><b>${data.username}:</b> ${data.message}</p>`;
   });
