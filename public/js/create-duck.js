@@ -62,84 +62,24 @@ $(document).ready(function() {
   // eslint-disable-next-line no-unused-vars
   const headPat = function(layer) {
     return $(this).createPattern({
-      source: '../duck/patterns/' + headPatsrc,
+      source: headPatsrc,
       repeat: 'repeat'
     });
   };
   // eslint-disable-next-line no-unused-vars
   const billPat = function(layer) {
     return $(this).createPattern({
-      source: '../duck/patterns/' + billPatsrc,
+      source: billPatsrc,
       repeat: 'repeat'
     });
   };
   // eslint-disable-next-line no-unused-vars
   const bodyPat = function(layer) {
     return $(this).createPattern({
-      source: '../duck/patterns/' + bodyPatsrc,
+      source: bodyPatsrc,
       repeat: 'repeat'
     });
   };
-
-  var colGradPat = {
-    head: {
-      color: '#ffff00',
-      pattern: headPat,
-      gradient: headGrad
-    },
-    body: {
-      color: '#ffff00',
-      pattern: bodyPat,
-      gradient: bodyGrad
-    },
-    bill: {
-      color: '#ffa500',
-      pattern: billPat
-    }
-  };
-
-  function drawBody() {
-    $('canvas').removeLayerGroup('body');
-
-    $('canvas')
-      .drawEllipse({
-        layer: true,
-        name: 'body',
-        groups: ['body', 'duck'],
-        index: 0,
-        strokeStyle: '#000',
-        strokeWidth: 3,
-        fillStyle: colGradPat.body.color,
-        shadowColor: 'rgb(0, 0, 0, 0.5)',
-        shadowBlur: 15,
-        shadowX: 4,
-        shadowY: 10,
-        x: 210,
-        y: 230,
-        width: 200,
-        height: 150
-      })
-      .drawBezier({
-        layer: true,
-        name: 'wing',
-        groups: ['body', 'beziers'],
-        index: 1,
-        strokeStyle: 'rgb(0,0,0, 0.5)',
-        fillStyle: 'rgb(0,0,0, 0.04)',
-        strokeWidth: 3,
-        x1: 205,
-        y1: 280,
-        cx1: 225,
-        cy1: 310,
-        cx2: 375,
-        cy2: 210,
-        x2: 205,
-        y2: 240
-      });
-  }
-
-  function drawHead() {
-    $('canvas').removeLayerGroup('head');
 
     $('canvas')
       .drawEllipse({
@@ -267,6 +207,26 @@ $(document).ready(function() {
     }
     $('canvas').drawLayers();
   }
+}
+var hatsrc = 'l3helmet.svg';
+function drawHat() {
+  $('canvas').removeLayer('hat');
+  $('canvas').drawImage({
+    name: 'hat',
+    groups: ['duck'],
+    imageSmoothing: true,
+    layer: true,
+    index: 10,
+    load: $('canvas').drawLayers(),
+    shadowColor: 'rgb(0, 0, 0, 0.3)',
+    shadowBlur: 15,
+    shadowX: 0,
+    shadowY: 5,
+    source: hatsrc,
+    x: 200,
+    y: 200
+  });
+}
 
   // Apply Color Functions
   $('#head_color').change(function() {
