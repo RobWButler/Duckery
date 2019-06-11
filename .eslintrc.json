@@ -9,9 +9,6 @@
     "plugins": [
         "prettier"
       ],
-    "parserOptions": {
-      "ecmaVersion": 2017
-    },
     "rules": {
         "no-duplicate-case":"error",
         "no-empty":"error",
