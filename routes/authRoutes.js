@@ -7,11 +7,15 @@ const crypto = require('crypto');
 const db = require('../models');
 
 const saltRounds = 10;
+const cssArray = ['styles.css', '/imports/bootstrap.min.css'];
 
 module.exports = app => {
   // Login Page
   app.get('/login', function(req, res) {
-    res.render('login', { style: 'styles' });
+    res.render('login', {
+      title: 'Duckery - Login',
+      css: cssArray
+    });
   });
 
   // Login POST route
@@ -25,7 +29,10 @@ module.exports = app => {
 
   // Sign up page
   app.get('/signup', function(req, res) {
-    res.render('signup', { style: 'styles' });
+    res.render('signup', {
+      title: 'Duckery - Signup',
+      css: cssArray
+    });
   });
 
   // Logout page
@@ -37,7 +44,10 @@ module.exports = app => {
 
   // Profile page
   app.get('/profile', authenticationMiddleware(), function(req, res) {
-    res.render('profile', { style: 'styles' });
+    res.render('profile', {
+      title: 'Duckery - Profile',
+      css: cssArray
+    });
   });
 
   function authenticationMiddleware() {
@@ -91,7 +101,11 @@ module.exports = app => {
 
     if (errors) {
       console.log('Errors: ' + JSON.stringify(errors));
-      res.render('signup', { errors: errors });
+      res.render('signup', {
+        title: 'Duckery - Signup',
+        css: cssArray,
+        errors: errors
+      });
     } else {
       bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
         if (err) {
@@ -127,7 +141,10 @@ module.exports = app => {
 
   // Forgot password page
   app.get('/forgot', function(req, res) {
-    res.render('forgot');
+    res.render('forgot', {
+      title: 'Duckery - Forgot Password',
+      css: cssArray
+    });
   });
 
   // Forgot POST route
@@ -218,7 +235,11 @@ module.exports = app => {
         req.flash('error', 'Password reset token is invalid or has expired');
         return res.redirect('/forgot');
       } else {
-        res.render('reset', { token: req.params.token });
+        res.render('reset', {
+          title: 'Duckery - Reset Password',
+          css: cssArray,
+          token: req.params.token
+        });
       }
     });
   });
@@ -273,7 +294,11 @@ module.exports = app => {
 
             if (errors) {
               console.log('Errors: ' + JSON.stringify(errors));
-              res.render('/reset/:token', { errors: errors });
+              res.render('/reset/:token', {
+                title: 'Duckery - Reset Password',
+                css: cssArray,
+                errors: errors
+              });
             } else {
               bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
                 if (err) {
