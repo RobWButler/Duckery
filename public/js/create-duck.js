@@ -243,7 +243,7 @@ function drawHat() {
     imageSmoothing: true,
     layer: true,
     index: 10,
-    load: $('canvas').drawLayers(),
+    load: () => $('canvas').drawLayers(),
     shadowColor: 'rgb(0, 0, 0, 0.3)',
     shadowBlur: 15,
     shadowX: 0,
@@ -261,9 +261,6 @@ function changeStyle(varlayer, style, val) {
   $('canvas').setLayer(varlayer, {
     fillStyle: style
   });
-  if (hatOn) {
-    drawHat();
-  }
   $('canvas').drawLayers();
 }
 
