@@ -27,6 +27,7 @@ var API = {
 //Check if the fillStyle is a function (so the parameters for the function can be passed)
 //or a solid color (so the hex value can be passed)
 function funcStyleCheck(toCheck, checkLayer) {
+  console.log(toCheck);
   if (typeof toCheck === 'function') {
     if (toCheck === headGrad || toCheck === bodyGrad) {
       return 'grad';
@@ -90,5 +91,5 @@ var handleFormSubmit = function(event) {
 $('#submit').on('click', handleFormSubmit);
 $('#submit').on('click', function() {
   alert('Your duck has been created!');
-  location.reload();
+  //location.reload();
 });
