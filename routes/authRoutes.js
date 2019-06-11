@@ -133,22 +133,23 @@ module.exports = app => {
               });
           })
           .catch(err => {
-            var message = err.errors.map(error => {
-              error.msg = error.message;
+            console.log(err);
+            // var message = err.errors.map(error => {
+            //   error.msg = error.message;
 
-              if (error.message === 'email must be unique') {
-                error.msg = 'Email is taken';
-              } else if (error.message === 'username must be unique') {
-                error.msg = 'Username is taken';
-              }
+            //   if (error.message === 'email must be unique') {
+            //     error.msg = 'Email is taken';
+            //   } else if (error.message === 'username must be unique') {
+            //     error.msg = 'Username is taken';
+            //   }
 
-              return error;
-            });
+            //   return error;
+            // });
             console.log('Errors: ' + JSON.stringify(message));
             res.render('signup', {
               title: 'Duckery - Signup',
               css: cssArray,
-              errors: message
+              errors: []
             });
           });
       });
