@@ -1,4 +1,4 @@
-const environmentJson = require('./environment.json');
+const environmentJson = require('./config.json');
 let env = {};
 
 // Determine proper environment
@@ -20,6 +20,7 @@ switch (environmentJson.NODE_ENV && environmentJson.NODE_ENV.toLowerCase()) {
     break;
 }
 
+console.log(process.env)
 // Other config
 let syncOptions = { force: false };
 // If running a test, set syncOptions.force to true

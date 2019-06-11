@@ -6,7 +6,6 @@
     "host": "localhost",
     "dialect": "mysql",
     "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
-    
   },
   "test": {
     "username": "root",
