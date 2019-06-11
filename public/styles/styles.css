@@ -92,6 +92,33 @@ body {
   font-family: 'EB Garamond', serif;
 }
 
+.links2 {
+  font-family: 'Merienda', cursive;
+  font-size: 30px;
+  padding: 60px 92px;
+  border: solid rgb(123, 252, 252) 2px!important;
+}
+
+.links2:hover {
+  color: rgb(255, 217, 0);
+  -webkit-text-stroke: .5px black;
+}
+
+#linkA {
+  background-image: url(../images/ducky_debugger.JPG);
+  background-size: 100% 100%;
+}
+
+#linkB {
+  background-image: url(../images/duck_battles_pic.jpg);
+  background-size: 100% 100%;
+}
+
+#linkC {
+  background-image: url(../images/duck_shot_pic.JPG);
+  background-size: 100% 100%;
+}
+
 * {
   box-sizing: border-box;
 }
