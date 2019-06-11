@@ -45,12 +45,10 @@ module.exports = app => {
       title: 'Duckery - View Duck',
       css: ['styles.css', 'imports/bootstrap.min.css'],
       js: [
-        'bootstrap.bundle.js',
+        'imports/jcanvas.min.js',
         'create-duck.js',
-        'index.js',
-        'jcanvas.min.js',
-        'jquery.min.js',
-        'view-duck.js'
+        'view-duck.js',
+        'index.js'
       ],
       duck: res,
       id: req.params.id - 1
