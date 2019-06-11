@@ -27,7 +27,11 @@ require('./routes/htmlRoutes')(app);
 // Starting the server, syncing our models ------------------------------------/
 async function main() {
   try {
-    await db.sequelize.sync(config.syncOptions);
+    if (process.env.JAWSDB_URL) {
+      await db.sequelize.sync(process.env.JAWSDB_URL);
+    } else {
+      await db.sequelize.sync(config.syncOptions);
+    }
   } catch (err) {
     console.error('Failed to initialize the database', err);
   }
