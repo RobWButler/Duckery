@@ -13,7 +13,7 @@ module.exports = app => {
   });
 
   // Create duck page
-  app.get('/duck/create', function(req, res) {
+  app.get('/createduck', function(req, res) {
     res.render('createduck', { style: 'styles' });
   });
 

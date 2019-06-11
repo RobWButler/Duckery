@@ -4,6 +4,7 @@ const expressValidator = require('express-validator');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const passport = require('passport');
+const cors = require('cors');
 
 const flash = require('connect-flash');
 
@@ -14,6 +15,12 @@ module.exports = app => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
   app.use(expressValidator());
+
+  // Cors
+  const corsOptions = {
+    origin: '*'
+  };
+  app.options('*', cors(corsOptions));
 
   app.use(express.static('public'));
 

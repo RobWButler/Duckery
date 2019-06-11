@@ -1,8 +1,9 @@
 const express = require('express');
+const socket = require('socket.io');
+const http = require('http');
 const app = express();
-
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const server = http.createServer(app);
+const io = socket.listen(server);
 
 const config = require('./config/config.js');
 const db = require('./models');
@@ -32,7 +33,7 @@ async function main() {
   }
 
   try {
-    await http.listen(PORT, function() {
+    await server.listen(PORT, function() {
       console.log(
         `==> 🌎  Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`
       );

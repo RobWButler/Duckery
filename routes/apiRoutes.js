@@ -34,11 +34,16 @@ module.exports = app => {
   });
 
   // Get Logged in User
-  app.get('/chat/user', (req, res) => {
-    res.json({
-      reqUser: req.user,
-      resUser: res.user,
-      resSession: res.session
+  app.get('/api/get-user', (req, res) => {
+    if (req.user) {
+      return res.status(200).json({
+        username: req.user.username,
+        email: req.user.email
+      });
+    }
+
+    return res.status(401).json({
+      errorMsg: 'You are not logged in.'
     });
   });
 };
