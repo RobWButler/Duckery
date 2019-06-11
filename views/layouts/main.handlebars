@@ -20,29 +20,27 @@
   <title>{{title}}</title>
 </head>
 
-  <body>
-    <div class="jumbotron mb-0">
-      <h1 class="text-center">D U C K E R Y</h1>
-      <h3 class="text-center" id="devh3">A developer's best friend</h3>
-    </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light pt-0 pb-0 pr-0 pl-0">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        {{#if isAuthenticated}}
-          <a class="nav-item nav-link pr-5 pl-5" href="/profile">Profile</a>
-          <a class="nav-item nav-link pr-5 pl-5" href="/chat">Chat</a>
-        {{else}}
-          <a class="nav-item nav-link pr-5 pl-5" href="/signup">Sign up</a>
-          <a class="nav-item nav-link pr-5 pl-5" href="/login">Login</a>
-        {{/if}}
-          <a class="nav-item nav-link pr-5 pl-5" href="/duck/create">Create Coding Ducky</a>
-          <a class="nav-item nav-link pr-5 pl-5 mini" href="/minigames">Minigames</a>
-        {{#if isAuthenticated}}
-          <a class="nav-item nav-link pr-5 pl-5" href="/logout">Logout</a>
-        {{/if}}
+<body>
+  <div class="jumbotron mb-0">
+    <h1 class="text-center">D U C K E R Y</h1>
+    <h3 class="text-center" id="devh3">A developer's best friend</h3>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light pt-0 pb-0 pr-0 pl-0">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      {{#if isAuthenticated}}
+      <a class="nav-item nav-link pr-5 pl-5" href="/logout">Logout</a>
+      <a class="nav-item nav-link pr-5 pl-5" href="/profile">Profile</a>
+      <a class="nav-item nav-link pr-5 pl-5" href="/chat">Chat</a>
+      <a class="nav-item nav-link pr-5 pl-5" href="/createduck">Create Coding Ducky</a>
+      {{else}}
+      <a class="nav-item nav-link pr-5 pl-5" href="/signup">Sign up</a>
+      <a class="nav-item nav-link pr-5 pl-5" href="/login">Login</a>
+      <a class="nav-item nav-link pr-5 pl-5 mini" href="/minigames" tabindex="-1" aria-disabled="true">Mini-games</a>
+      {{/if}}
       </div>
     </div>
   </nav>
