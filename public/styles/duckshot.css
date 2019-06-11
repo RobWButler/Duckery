@@ -1,0 +1,425 @@
+/************* 
+Base
+**************/
+html, body {
+  counter-reset: hit;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  cursor: crosshair;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  cursor: crosshair;
+}
+
+input {
+  width: 300px;
+  height: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+input:focus {
+  outline: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+a {
+  color: red;
+  text-decoration: none;
+}
+
+/************* 
+layout
+**************/
+.l-header-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 1100px;
+  height: 130px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.l-game-container {
+  position: absolute;
+  top: 130px;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+  width: 1100px;
+  height: 700px;
+  background: url("http://www.scottishrugby.org/sites/default/files/hero-images/xqe7-xjv.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.l-game-bottom {
+  position: absolute;
+  top: 670px;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 1100px;
+  height: 220px;
+  background: repeating-linear-gradient(to right, #8B0000, #8B0000 10px, #FAEBD7 10px, #FAEBD7 20px);
+}
+
+.l-game-over {
+  position: absolute;
+  top: -2000px;
+  width: 100%;
+  height: 1000px;
+  background: repeating-linear-gradient(45deg, rgba(139, 0, 0, 0.6), rgba(139, 0, 0, 0.6) 10px, rgba(250, 235, 215, 0.6) 10px, rgba(250, 235, 215, 0.6) 20px);
+  z-index: 5;
+  text-align: center;
+  cursor: pointer;
+  -webkit-animation: over 3s forwards 13s;
+          animation: over 3s forwards 13s;
+}
+
+/************* 
+modules
+**************/
+.game-header {
+  padding: 20px;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.game-header::after {
+  content: counter(hit);
+}
+
+.game-row {
+  width: 1500px;
+  height: 180px;
+  border-bottom: 5px solid brown;
+  overflow: hidden;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+}
+
+.duck-row {
+  display: flex;
+  flex-wrap: no-wrap;
+  margin-left: -4000px;
+  width: 5000px;
+  height: 200px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-animation: move 18s linear forwards 1;
+          animation: move 18s linear forwards 1;
+}
+.duck-row--two {
+  margin-left: 2000px;
+  -webkit-animation: move2 15s linear forwards .3s 1;
+          animation: move2 15s linear forwards .3s 1;
+}
+.duck-row--three {
+  -webkit-animation: move 14s linear forwards 3s 1;
+          animation: move 14s linear forwards 3s 1;
+}
+.duck-row__box {
+  margin-top: 50px;
+  margin-right: 100px;
+  width: 150px;
+  height: 150px;
+}
+.duck-row__box--reverse {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+.duck-row__img {
+  width: 150px;
+  height: 150px;
+  margin-top: -150px;
+  background: url(http://www.clker.com/cliparts/a/2/4/0/12375609741965607715pitr_Ducky_icon.svg.med.png);
+  background-size: contain;
+  transition: all .2s;
+}
+
+.game-over {
+  position: absolute;
+  top: 100px;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 800px;
+  height: 479px;
+  background: white;
+  font-size: 30px;
+  background: url(https://s-media-cache-ak0.pinimg.com/736x/d9/a7/fc/d9a7fc470357f881adb27b0ed507f94d.jpg), red;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.game-over .game-txt {
+  position: absolute;
+  top: 190px;
+  width: 100%;
+  height: 60px;
+}
+.game-over .game-txt h1 {
+  font-size: 70px;
+}
+
+.game-score::after {
+  content: counter(hit);
+}
+
+/************* 
+States
+**************/
+input:checked {
+  counter-increment: hit;
+}
+input:checked:after {
+  content: "+1";
+  position: relative;
+  top: 80px;
+  left: 150px;
+  padding: 10px;
+  width: 75px;
+  height: 75px;
+  z-index: 5;
+  color: gold;
+  font-size: 30px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  -webkit-animation: hit 2s forwards;
+          animation: hit 2s forwards;
+}
+input:checked ~ .duck-row__img {
+  background: url(http://cliparts.co/cliparts/zcX/oqo/zcXoqorgi.png);
+  background-size: contain;
+}
+input:checked ~ .duck-row__img:after {
+  content: "";
+  position: absolute;
+  top: 20;
+  left: 500;
+  width: inherit;
+  height: inherit;
+}
+
+.list-group-item {
+  line-height: 2.5;
+}
+
+#home {
+  background-image: url(../images//bonusducks.mp4.mp4);
+  background-size: cover;
+
+}
+.collapse{
+  background-color: rgb(123, 252, 252);
+  background-size: contain;
+  background-repeat: none;
+}
+.navbar-nav{
+  padding-top: 0%;
+  padding-bottom: 0%;
+}
+.nav-item{
+  font-size: 30px;
+  font-family: 'EB Garamond', serif;
+  color: black!important;
+}
+.container-body{
+  position: absolute;
+  padding: 0!important;
+  width: 100%;
+}
+.navbar{
+  border-bottom: solid 2px rgb(255, 217, 0); 
+}
+.mini {
+  border-right: none;
+}
+.nav-link:hover{
+  color: rgb(255, 217, 0) !important;
+  text-shadow:
+    2px 2px 2px rgba(0, 0, 0, 0.856);  
+}
+
+h1 {
+  font-size: 55px;
+}
+.jumbotron{
+  background-image: url(../images/rubber-duck-wallpaper-3.jpg);
+  background-size: contain;
+  background-repeat: repeat-x;
+  font-family: 'Merienda', cursive;
+  -webkit-text-stroke: .5px black;
+  border-radius: 0px;
+  color: wheat;
+  text-shadow:
+    3px 3px 0 #000,
+   -.5px -.5px 0 #000,  
+    .5px -.5px 0 #000,
+   -.5px  .5px 0 #000,
+    .5px  .5px 0 #000;
+}
+
+#devh3 {
+  color: wheat;
+  font-size: 35px;
+  text-shadow: none;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+body {
+  font-family: 'EB Garamond', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header,
+footer {
+  padding: 18px;
+}
+
+h1, p {
+  margin-bottom: 24px;
+}
+
+p {
+  line-height: 1.4;
+}
+
+label {
+  font-weight: 700;
+}
+
+footer {
+  color: black;
+  background-color: rgb(123, 252, 252);
+  border-top: 2px solid rgb(255, 217, 0);
+  font-family: 'Merienda', cursive;
+  -webkit-text-stroke: .5px black;
+  position: absolute!important;
+  width: 100%;
+  bottom: -510px!important;
+  padding-top: 18px;
+}
+
+.main-content {
+  display: none;
+}
+
+input:checked ~ .main-content {
+  display: block;
+}
+
+.social-icons, .footer-links {
+  list-style-type: none;
+}
+
+@-webkit-keyframes move {
+  0% {
+    margin-left: -4000px;
+  }
+  100% {
+    margin-left: 2500px;
+  }
+}
+
+@keyframes move {
+  0% {
+    margin-left: -4000px;
+  }
+  100% {
+    margin-left: 2500px;
+  }
+}
+@-webkit-keyframes move2 {
+  0% {
+    margin-left: 2000px;
+  }
+  100% {
+    margin-left: -4000px;
+  }
+}
+@keyframes move2 {
+  0% {
+    margin-left: 2000px;
+  }
+  100% {
+    margin-left: -4000px;
+  }
+}
+@-webkit-keyframes flow {
+  0% {
+    left: 80px;
+  }
+  50% {
+    left: 65px;
+  }
+}
+@keyframes flow {
+  0% {
+    left: 80px;
+  }
+  50% {
+    left: 65px;
+  }
+}
+@-webkit-keyframes hit {
+  0% {
+    top: 80px;
+  }
+  100% {
+    top: 10px;
+    display: none;
+  }
+}
+@keyframes hit {
+  0% {
+    top: 80px;
+  }
+  100% {
+    top: 10px;
+    display: none;
+  }
+}
+@-webkit-keyframes over {
+  0% {
+    top: -2000px;
+  }
+  100% {
+    top: 0;
+  }
+}
+@keyframes over {
+  0% {
+    top: -2000px;
+  }
+  100% {
+    top: 0;
+  }
+}

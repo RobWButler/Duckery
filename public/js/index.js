@@ -6,7 +6,7 @@ var API = {
         'Content-Type': 'application/json'
       },
       type: 'POST',
-      url: 'api/ducks',
+      url: '/api/ducks',
       data: JSON.stringify(duck)
     });
   },
@@ -42,8 +42,8 @@ function funcStyleCheck(toCheck, checkLayer) {
   }
 }
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
+// handleFormSubmit is called whenever we submit a new Duck
+// Save the new Duck to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
@@ -57,16 +57,16 @@ var handleFormSubmit = function(event) {
     var $headgradient = headGradsrc.c1 + ',' + headGradsrc.c2;
   }
   if (headPatternOn) {
-    var $headpattern = headPatsrc;
+    var $headpattern = headPatsrc.replace('.duck/patterns/', '');
   }
   if (billPatternOn) {
-    var $billpattern = billPatsrc;
+    var $billpattern = billPatsrc.replace('.duck/patterns/', '');
   }
   if (bodyGradientOn) {
     var $bodygradient = bodyGradsrc.c1 + ',' + bodyGradsrc.c2;
   }
   if (bodyPatternOn) {
-    var $bodypattern = bodyPatsrc;
+    var $bodypattern = bodyPatsrc.replace('.duck/patterns/', '');
   }
 
   var duck = {

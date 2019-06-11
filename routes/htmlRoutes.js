@@ -1,371 +1,96 @@
+const moment = require('moment');
 const db = require('../models');
-const passport = require('passport');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-const nodemailer = require('nodemailer');
-const async = require('async');
-const crypto = require('crypto');
 
-module.exports = function(app) {
+module.exports = app => {
   // Home page
   app.get('/', function(req, res) {
-    res.render('home', { style: 'styles' });
-    console.log(req.user);
-    console.log(req.isAuthenticated());
-  });
-
-  app.get('/profile', authenticationMiddleware(), function(req, res) {
-    res.render('profile', { style: 'styles' });
+    res.render('home', {
+      title: 'Duckery - Home',
+      css: ['styles.css', 'imports/bootstrap.min.css']
+    });
   });
 
   // Chat page
   app.get('/chat', function(req, res) {
-    res.render('chat');
-  });
-
-  // Login routes
-  app.get('/login', function(req, res) {
-    res.render('login', { style: 'styles' });
-  });
-
-  app.post(
-    '/login',
-    passport.authenticate('local', {
-      successRedirect: '/profile',
-      failureRedirect: '/'
-    })
-  );
-
-  // Logout routes
-  app.get('/logout', authenticationMiddleware(), function(req, res) {
-    req.logout();
-    req.session.destroy();
-    res.redirect('/login');
-  });
-
-  // Sign up routes
-  app.get('/signup', function(req, res) {
-    res.render('signup', { style: 'styles' });
-  });
-
-  app.post('/signup', function(req, res) {
-    req.checkBody('username', 'Username field cannot be empty.').notEmpty();
-    req
-      .checkBody('username', 'Username must be between 4-15 characters long.')
-      .len(4, 15);
-    req
-      .checkBody('email', 'The email you entered is invalid, please try again.')
-      .isEmail();
-    req
-      .checkBody(
-        'email',
-        'Email address must be between 4-100 characters long, please try again.'
-      )
-      .len(4, 100);
-    req
-      .checkBody('password', 'Password must be between 8-100 characters long.')
-      .len(8, 100);
-    req
-      .checkBody(
-        'password',
-        'Password must include one lowercase character, one uppercase character, a number, and a special character.'
-      )
-      .matches(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/,
-        'i'
-      );
-    req
-      .checkBody('password2', 'Password must be between 8-100 characters long.')
-      .len(8, 100);
-    req
-      .checkBody('password2', 'Passwords do not match, please try again.')
-      .equals(req.body.password);
-
-    var errors = req.validationErrors();
-
-    if (errors) {
-      console.log('Errors: ' + JSON.stringify(errors));
-      res.render('signup', { errors: errors });
-    } else {
-      bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-        if (err) {
-          throw err;
-        }
-        // Store hash in your password DB.
-        db.User.create({
-          username: req.body.username,
-          password: hash,
-          email: req.body.email
-        }).then(function() {
-          db.sequelize
-            .query('SELECT LAST_INSERT_ID() as userId')
-            .then(function(result) {
-              console.log(result[0]);
-              var userId = result[0];
-              console.log(userId);
-              req.login(userId, function(err) {
-                if (err) {
-                  throw err;
-                }
-                res.redirect('/');
-              });
-            });
-        });
-      });
-    }
-  });
-
-  passport.serializeUser(function(userId, done) {
-    done(null, userId);
-  });
-
-  passport.deserializeUser(function(userId, done) {
-    done(null, userId);
-  });
-
-  function authenticationMiddleware() {
-    return (req, res, next) => {
-      console.log(
-        `req.session.passport.user: ${JSON.stringify(req.session.passport)}`
-      );
-
-      if (req.isAuthenticated()) {
-        return next();
+    db.Chat.findAll().then(logs => {
+      let logsArr = [];
+      for (let i = 0; i < logs.length; i++) {
+        logs[i].dataValues.timestamp = moment(
+          logs[i].dataValues.createdAt
+        ).fromNow();
+        logsArr.push(logs[i].dataValues);
       }
-      res.redirect('/');
-    };
-  }
-
-  //Mini games routes
-  app.get('/minigames', function(req, res) {
-    res.render('minigames', { style: 'styles' });
+      res.status(200).render('chat', {
+        title: 'Duckery - Chat',
+        css: ['styles.css', 'chat.css', 'imports/bootstrap.min.css'],
+        js: ['chat.js'],
+        logs: logsArr,
+        username: req.body.username
+      });
+    });
   });
 
-  app.get('/duckshot', function(req, res) {
-    res.render('duckshot', { style: 'duckshot' });
+  // Create duck page
+  app.get('/duck/create', function(req, res) {
+    res.render('createduck', {
+      title: 'Duckery - Create A Duck',
+      css: ['styles.css', 'imports/bootstrap.min.css'],
+      js: ['imports/jcanvas.min.js', 'index.js', 'create-duck.js']
+    });
   });
 
-  app.get('/createduck', function(req, res) {
-    res.render('createduck', { style: 'styles' });
-  });
-
+  // View duck page
   app.get('/viewduck/:id', function(req, res) {
     res.render('viewduck', {
-      style: 'styles',
+      title: 'Duckery - View Duck',
+      css: ['styles.css', 'imports/bootstrap.min.css'],
+      js: [
+        'imports/jcanvas.min.js',
+        'index.js',
+        'create-duck.js',
+        'view-duck.js'
+      ],
       duck: res,
       id: req.params.id - 1
     });
   });
 
-  app.get('/askduck', function(req, res) {
-    res.render('askduck', { style: 'askduck', script: 'askduck' });
-  });
-
-  app.get('/battleducks', function(req, res) {
-    res.render('battleducks', { style: 'battleducks', script: 'battleducks' });
-  });
-
-  //Forgot password routes
-  app.get('/forgot', function(req, res) {
-    res.render('forgot');
-  });
-
-  app.post('/forgot', function(req, res, next) {
-    async.waterfall(
-      [
-        function(done) {
-          crypto.randomBytes(10, function(err, buf) {
-            var token = buf.toString('hex');
-            done(err, token);
-          });
-        },
-        function(token, done) {
-          db.User.findOne({ where: { email: req.body.email } }).then(function(
-            user
-          ) {
-            if (!user) {
-              req.flash('error', 'No account with that email address exists.');
-              return res.redirect('/forgot');
-            }
-            user.resetPasswordToken = token;
-            user.resetPasswordExpires = Date.now() + 3600000;
-            user.save().then(function(user, err) {
-              done(err, token, user);
-            });
-          });
-        },
-        function(token, user, done) {
-          var smtpTransport = nodemailer.createTransport({
-            service: 'Gmail',
-            auth: {
-              user: 'duckeryduckeryduckery@gmail.com',
-              pass: 'Ducks4life!!'
-            }
-          });
-          var mailOptions = {
-            to: user.email,
-            from: 'duckeryduckeryduckery@gmail.com',
-            subject:
-              'Lets get quackin on reseting your password ' + user.username,
-            text:
-              'You are receiving this because you (or a hacker) have requested the reset of your current password with Duckery!' +
-              '\n\n' +
-              'Please click on the link below to reset your password!' +
-              '\n\n' +
-              'http://' +
-              req.headers.host +
-              '/reset/' +
-              token +
-              '\n\n' +
-              'If you did not request this, please ignore!' +
-              '\n\n' +
-              'Thank you,' +
-              '\n\n' +
-              'The Duckery Team'
-          };
-          smtpTransport.sendMail(mailOptions, function(err) {
-            console.log('mail-sent');
-            req.flash(
-              'success',
-              'An email has been sent to ' +
-                user.email +
-                ' with further instructions.'
-            );
-            done(err, 'done');
-          });
-        }
-      ],
-      function(err) {
-        if (err) {
-          return next(err);
-        } else {
-          res.redirect('/forgot');
-        }
-      }
-    );
-  });
-
-  app.get('/reset/:token', function(req, res) {
-    db.User.findOne({
-      where: {
-        resetPasswordToken: req.params.token,
-        resetPasswordExpires: { $gt: Date.now() }
-      }
-    }).then(function(user) {
-      if (!user) {
-        req.flash('error', 'Password reset token is invalid or has expired');
-        return res.redirect('/forgot');
-      } else {
-        res.render('reset', { token: req.params.token });
-      }
+  //Minigames routes
+  app.get('/minigames', function(req, res) {
+    res.render('minigames', {
+      title: 'Duckery - Minigames',
+      css: ['styles.css', 'imports/bootstrap.min.css']
     });
   });
 
-  app.post('/reset/:token', function(req, res) {
-    async.waterfall(
-      [
-        function(done) {
-          db.User.findOne({
-            where: {
-              resetPasswordToken: req.params.token,
-              resetPasswordExpires: { $gt: Date.now() }
-            }
-          }).then(function(user) {
-            if (!user) {
-              req.flash(
-                'error',
-                'Password reset token is invalid or has expired.'
-              );
-              return res.redirect('back');
-            }
-            req
-              .checkBody(
-                'password',
-                'Password must be between 8-100 characters long.'
-              )
-              .len(8, 100);
-            req
-              .checkBody(
-                'password',
-                'Password must include one lowercase character, one uppercase character, a number, and a special character.'
-              )
-              .matches(
-                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/,
-                'i'
-              );
-            req
-              .checkBody(
-                'password2',
-                'Password must be between 8-100 characters long.'
-              )
-              .len(8, 100);
-            req
-              .checkBody(
-                'password2',
-                'Passwords do not match, please try again.'
-              )
-              .equals(req.body.password);
+  app.get('/minigames/duckshot', function(req, res) {
+    res.render('duckshot', {
+      title: 'Duckery - Duckshot',
+      css: ['styles.css', 'duckshot.css', 'imports/bootstrap.min.css']
+    });
+  });
 
-            var errors = req.validationErrors();
+  app.get('/minigames/askduck', function(req, res) {
+    res.render('askduck', {
+      title: 'Duckery - AskDuck',
+      css: ['styles.css', 'askduck.css', 'imports/bootstrap.min.css'],
+      js: ['askduck.js', 'imports/siriwave.min.js']
+    });
+  });
 
-            if (errors) {
-              console.log('Errors: ' + JSON.stringify(errors));
-              res.render('reset', { errors: errors, token: req.params.token });
-            } else {
-              bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-                if (err) {
-                  throw err;
-                }
-
-                user.update({ password: hash }).then(function(user) {
-                  user.resetPasswordToken = undefined;
-                  user.resetPasswordExpires = undefined;
-
-                  user.save().then(function(user) {
-                    req.logIn(user, function(err) {
-                      done(err, user);
-                    });
-                  });
-                });
-              });
-            }
-          });
-        },
-        function(user, done) {
-          var smtpTransport = nodemailer.createTransport({
-            service: 'Gmail',
-            auth: {
-              user: 'duckeryduckeryduckery@gmail.com',
-              pass: 'Ducks4life!!'
-            }
-          });
-          var mailOptions = {
-            to: user.email,
-            from: 'learntocodeinfo@mail.com',
-            subject: 'Your password has been changed',
-            text:
-              'Hello,\n\n' +
-              'This is a confirmation that the password for your account ' +
-              user.email +
-              ' has just been changed.\n'
-          };
-          smtpTransport.sendMail(mailOptions, function(err) {
-            req.flash('success', 'Success! Your password has been changed.');
-            done(err);
-          });
-        }
-      ],
-      function(err) {
-        if (err) {
-          throw err;
-        }
-        res.redirect('/login');
-      }
-    );
+  app.get('/minigames/battleducks', function(req, res) {
+    res.render('battleducks', {
+      title: 'Duckery - BattleDucks',
+      css: ['styles.css', 'battleducks.css', 'imports/bootstrap.min.css'],
+      js: ['battleducks.js']
+    });
   });
 
   // Render 404 page for any unmatched routes
   app.get('*', function(req, res) {
-    res.render('404', { style: 'styles' });
+    res.render('404', {
+      title: 'Duckery - 404',
+      css: 'styles.css'
+    });
   });
 };

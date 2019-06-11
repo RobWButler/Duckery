@@ -2,7 +2,7 @@ const environmentJson = require('./environment.json');
 let env = {};
 
 // Determine proper environment
-switch (process.NODE_ENV) {
+switch (environmentJson.NODE_ENV && environmentJson.NODE_ENV.toLowerCase()) {
   case 'production':
   case 'prod':
     env = environmentJson.production;

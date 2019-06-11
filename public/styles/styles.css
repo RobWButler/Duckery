@@ -31,6 +31,17 @@ body{
   position: absolute;
   width: 100%;
 }
+#backHome {
+  text-shadow: none;
+  font-family: 'EB Garamond', serif;
+  font-size: 30px;
+}
+#signup,#submitSU,#login {
+  font-family: 'Merienda', cursive;
+}
+#submitSU:hover,#submitL:hover {
+  color: rgb(255, 217, 0) !important;
+}
 .navbar{
   border-bottom: solid 2px rgb(255, 217, 0); 
 }
@@ -40,9 +51,8 @@ body{
 .nav-link:hover{
   color: rgb(255, 217, 0) !important;
   text-shadow:
-    2px 2px 2px rgba(0, 0, 0, 0.856);  
+    2px 2px 2px rgba(0, 0, 0, 0.856);
 }
-
 h1 {
   font-size: 55px;
 }
@@ -80,6 +90,33 @@ main {
 
 body {
   font-family: 'EB Garamond', serif;
+}
+
+.links2 {
+  font-family: 'Merienda', cursive;
+  font-size: 30px;
+  padding: 60px 92px;
+  border: solid rgb(123, 252, 252) 2px!important;
+}
+
+.links2:hover {
+  color: rgb(255, 217, 0);
+  -webkit-text-stroke: .5px black;
+}
+
+#linkA {
+  background-image: url(../images/ducky_debugger.JPG);
+  background-size: 100% 100%;
+}
+
+#linkB {
+  background-image: url(../images/duck_battles_pic.jpg);
+  background-size: 100% 100%;
+}
+
+#linkC {
+  background-image: url(../images/duck_shot_pic.JPG);
+  background-size: 100% 100%;
 }
 
 * {
@@ -150,11 +187,6 @@ canvas{
   padding: 1.5rem;
 }
 
-a{
-  color: gray;
-  background-color: rgb(245, 245, 245);
-}
-
 a:link{
   text-decoration: none;
 }
@@ -208,4 +240,24 @@ input[type=color]{
 
 #duck-creator{
   height:100%
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

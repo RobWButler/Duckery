@@ -4,6 +4,8 @@ const expressValidator = require('express-validator');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const passport = require('passport');
+const cors = require('cors');
+const flash = require('connect-flash');
 
 const config = require('../config/config.js');
 
@@ -12,6 +14,21 @@ module.exports = app => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
   app.use(expressValidator());
+
+  // Handlebars
+  app.engine(
+    'handlebars',
+    exphbs({
+      defaultLayout: 'main'
+    })
+  );
+  app.set('view engine', 'handlebars');
+
+  // Cors
+  const corsOptions = {
+    origin: '*'
+  };
+  app.options('*', cors(corsOptions));
 
   app.use(express.static('public'));
 
@@ -39,14 +56,8 @@ module.exports = app => {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  // Handlebars
-  app.engine(
-    'handlebars',
-    exphbs({
-      defaultLayout: 'main'
-    })
-  );
-  app.set('view engine', 'handlebars');
+  // Flash
+  app.use(flash());
 
   // Passport authentication check
   app.use(function(req, res, next) {

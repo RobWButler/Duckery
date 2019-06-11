@@ -1,13 +1,13 @@
 // eslint-disable-next-line no-unused-vars
-var headGradientOn = false;
+var headGradientOn = '';
 // eslint-disable-next-line no-unused-vars
-var bodyGradientOn = false;
+var bodyGradientOn = '';
 // eslint-disable-next-line no-unused-vars
-var headPatternOn = false;
+var headPatternOn = '';
 // eslint-disable-next-line no-unused-vars
-var billPatternOn = false;
+var billPatternOn = '';
 // eslint-disable-next-line no-unused-vars
-var bodyPatternOn = false;
+var bodyPatternOn = '';
 
 $('#download').on('click', function() {
   console.log('Download');
@@ -61,21 +61,21 @@ var bodyPatsrc = '';
 // eslint-disable-next-line no-unused-vars
 const headPat = function(layer) {
   return $(this).createPattern({
-    source: '../duck/patterns/' + headPatsrc,
+    source: headPatsrc,
     repeat: 'repeat'
   });
 };
 // eslint-disable-next-line no-unused-vars
 const billPat = function(layer) {
   return $(this).createPattern({
-    source: '../duck/patterns/' + billPatsrc,
+    source: billPatsrc,
     repeat: 'repeat'
   });
 };
 // eslint-disable-next-line no-unused-vars
 const bodyPat = function(layer) {
   return $(this).createPattern({
-    source: '../duck/patterns/' + bodyPatsrc,
+    source: bodyPatsrc,
     repeat: 'repeat'
   });
 };
@@ -248,7 +248,7 @@ function drawHat() {
     shadowBlur: 15,
     shadowX: 0,
     shadowY: 5,
-    source: '../duck/accessories/' + hatsrc,
+    source: hatsrc,
     x: 200,
     y: 200
   });
