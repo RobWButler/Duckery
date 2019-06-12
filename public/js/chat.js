@@ -1,8 +1,7 @@
 // On load
 (function() {
-  const socket = io.connect(
-    'bqmayq5x95g1sgr9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
-  );
+  var HOST = location.origin.replace(/^http/, 'ws');
+  const socket = io.connect(HOST);
 
   // Store DOM elements
   const message = document.getElementById('message');
