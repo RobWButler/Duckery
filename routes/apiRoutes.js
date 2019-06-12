@@ -58,6 +58,9 @@ module.exports = app => {
 
   // POST chat data
   app.post('/api/chat', (req, res) => {
+    if (!req.body.message) {
+      return;
+    }
     db.Chat.create({
       username: req.user.username,
       message: req.body.message
