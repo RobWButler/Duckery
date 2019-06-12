@@ -32,16 +32,9 @@ module.exports = app => {
 
   app.use(express.static('public'));
 
-  const options = {
-    host: config.env.host,
-    port: config.env.port,
-    user: config.env.username,
-    password: config.env.password,
-    database: config.env.database
-  };
-
   // Express session
-  const sessionStore = new MySQLStore(options);
+  console.log(config.env);
+  const sessionStore = new MySQLStore(config.env);
   app.use(
     session({
       secret: config.env.session_secret,

@@ -4,7 +4,8 @@
   "description": "Project 2 Starter",
   "main": "server.js",
   "scripts": {
-    "start": "set NODE_ENV=production && nodemon server",
+    "start": "nodemon server",
+    "prod": "set NODE_ENV=production && nodemon server",
     "dev": "set NODE_ENV=development && nodemon server",
     "lint": "eslint --quiet .",
     "fix": "eslint --fix .",
