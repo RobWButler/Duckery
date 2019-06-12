@@ -1,6 +1,8 @@
 // On load
 (function() {
-  const socket = io.connect('http://localhost:3000');
+  const socket = io.connect(
+    'bqmayq5x95g1sgr9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
+  );
 
   // Store DOM elements
   const message = document.getElementById('message');
