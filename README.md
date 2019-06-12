@@ -3,20 +3,20 @@
 The rubber duck method refers to the action of talking out a problem to a rubber duck the same way you would to a person. Through talking about the problem with your trusty duck, you will actually answer your own question! This method is well known throughout the coding community, which is why we have created a platform for anyone to create their own virtual rubber duck. We hope you enjoy it, and we ensure this method will provide stress relief and answers to your conflicts, questions, and bugs!
 
 
-![Duck](\/public/images/readme/main.png "Duck")
+![Duck](https://github.com/EthanBonsignori/duckery/blob/master/public/images/readme/main.PNG)
 
 
 ## We also support customizing your little ducky friend. Run through all of our customizations to create a unique duck. 
 
 
 
-![CustDuck](/public/images/readme/custyDuck.png "CustDuck")
+![CustDuck](https://github.com/EthanBonsignori/duckery/blob/master/public/images/readme/custyDuck.PNG)
 
 
 ## Chat with fellow coders in our live chat! When you take a break from debugging with your favorite duck pal, ask questions to other developers that are online.
 
 
-![Chat](/public/images/readme/chat.png "Chat")
+![Chat](https://github.com/EthanBonsignori/duckery/blob/master/public/images/readme/chat.PNG)
 
 
 ## Coming soon...
