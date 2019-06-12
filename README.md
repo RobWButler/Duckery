@@ -1,28 +1,25 @@
-# duckery
-
-# H1 Duckery,
-# Alt-H1 developer's best friend.
+# Duckery, developer's best friend.
 
 The rubber duck method refers to the action of talking out a problem to a rubber duck the same way you would to a person. Through talking about the problem with your trusty duck, you will actually answer your own question! This method is well known throughout the coding community, which is why we have created a platform for anyone to create their own virtual rubber duck. We hope you enjoy it, and we ensure this method will provide stress relief and answers to your conflicts, questions, and bugs!
 
-Inline-style: 
-![alt text](https://github.com/EthanBonsignori/duckery/raw/master/public/images/readme/main.png "Duck")
+
+![Duck](\/public/images/readme/main.png "Duck")
 
 
-# Alt-H2 We also support customizing your little ducky friend. Run through all of our customizations to create a unique duck. 
+## We also support customizing your little ducky friend. Run through all of our customizations to create a unique duck. 
 
 
-Inline-style: 
-![alt text](https://github.com/EthanBonsignori/duckery/raw/master/public/images/readme/custyDuck.png "CustDuck")
+
+![CustDuck](/public/images/readme/custyDuck.png "CustDuck")
 
 
-# Alt-H2 Chat with fellow coders in our live chat! When you take a break from debugging with your favorite duck pal, ask questions to other developers that are online.
-
-Inline-style: 
-![alt text](https://github.com/EthanBonsignori/duckery/raw/master/public/images/readme/chat.png "Chat")
+## Chat with fellow coders in our live chat! When you take a break from debugging with your favorite duck pal, ask questions to other developers that are online.
 
 
-Coming soon...
+![Chat](/public/images/readme/chat.png "Chat")
+
+
+## Coming soon...
 
 
 Duck achievements, duck stats, settings, and a duck voting system.
