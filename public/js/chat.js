@@ -1,6 +1,6 @@
 // On load
 (function() {
-  var HOST = location.origin.replace(/^http/, 'ws');
+  const HOST = location.origin.replace(/^http/, 'ws');
   const socket = io.connect(HOST);
 
   // Store DOM elements
