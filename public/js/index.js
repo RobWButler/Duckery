@@ -91,5 +91,5 @@ var handleFormSubmit = function(event) {
 $('#submit').on('click', handleFormSubmit);
 $('#submit').on('click', function() {
   alert('Your duck has been created!');
-  //location.reload();
+  location.reload();
 });
