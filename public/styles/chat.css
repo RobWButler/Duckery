@@ -38,6 +38,7 @@ form {
 #chat-output b {
   color: #000;
 }
+
 #message {
   padding: 10px 20px;
   box-sizing: border-box;
@@ -55,11 +56,32 @@ form {
   color: #888
 }
 
-#send-chat {
+#chat-send {
   background: #7BFCFC;
   font-size: 18px;
   border: 0;
   padding: 12px 0;
   width: 100%;
   border-radius: 0 0 2px 2px;
+}
+
+#error-display {
+  background-color: rgb(255, 65, 65);
+  color: #fff;
+  text-align: center;
+  display: none;
+}
+
+#error-symbol {
+  float: left;
+  color: yellow;
+  margin-left: 5px;
+}
+
+#error-dismiss {
+  float: right;
+  color: #fff;
+  border: none;
+  background: none;
+  outline: none;
 }

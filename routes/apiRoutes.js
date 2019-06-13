@@ -46,7 +46,6 @@ module.exports = app => {
   app.get('/api/chat', (req, res) => {
     db.Chat.findAll()
       .then(logs => {
-        // console.log(logs);
         res.status(200).json(logs);
       })
       .catch(err => {
@@ -70,6 +69,7 @@ module.exports = app => {
       })
       .catch(err => {
         if (err) {
+          res.status(400);
           console.error(err);
         }
       });
