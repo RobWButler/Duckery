@@ -19,13 +19,31 @@ module.exports = app => {
   });
 
   // Login POST route
-  app.post(
-    '/login',
-    passport.authenticate('local', {
-      successRedirect: '/profile',
-      failureRedirect: '/'
-    })
-  );
+  app.post('/login', function(req, res) {
+    passport.authenticate('local', function(err, user) {
+      if (err) {
+        console.log(err);
+      }
+      if (!user) {
+        var error = {
+          errors: { msg: 'Username or Password is invalid' }
+        };
+        console.log(error);
+        res.render('login', {
+          title: 'Duckery - Login',
+          css: cssArray,
+          errors: error
+        });
+      } else {
+        req.logIn(user, function(err) {
+          if (err) {
+            console.log(err);
+          }
+          return res.redirect('/profile');
+        });
+      }
+    })(req, res);
+  });
 
   // Sign up page
   app.get('/signup', function(req, res) {
@@ -134,22 +152,21 @@ module.exports = app => {
           })
           .catch(err => {
             console.log(err);
-            // var message = err.errors.map(error => {
-            //   error.msg = error.message;
+            var message = err.errors.map(error => {
+              error.msg = error.message;
 
-            //   if (error.message === 'email must be unique') {
-            //     error.msg = 'Email is taken';
-            //   } else if (error.message === 'username must be unique') {
-            //     error.msg = 'Username is taken';
-            //   }
-
-            //   return error;
-            // });
+              if (error.message === 'email must be unique') {
+                error.msg = 'Email is taken';
+              } else if (error.message === 'username must be unique') {
+                error.msg = 'Username is taken';
+              }
+              return error;
+            });
             console.log('Errors: ' + JSON.stringify(message));
             res.render('signup', {
               title: 'Duckery - Signup',
               css: cssArray,
-              errors: []
+              errors: message
             });
           });
       });
@@ -179,7 +196,6 @@ module.exports = app => {
             user
           ) {
             if (!user) {
-              req.flash('error', 'No account with that email address exists.');
               return res.redirect('/forgot');
             }
             user.resetPasswordToken = token;

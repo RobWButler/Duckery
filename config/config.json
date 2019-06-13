@@ -1,28 +1,28 @@
 {
   "development": {
-    "username": "root",
-    "user": "root",
-    "password": "kirby0077",
-    "database": "duckery",
+    "username": "dderrickmatheww",
+    "user": "dderrickmatheww",
+    "password": "Blind5656!",
+    "database": "exampledb",
     "host": "localhost",
     "dialect": "mysql",
     "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
   },
   "test": {
-    "username": "root",
-    "user": "root",
-    "password": "kirby0077",
-    "database": "duckery",
+    "username": "dderrickmatheww",
+    "user": "dderrickmatheww",
+    "password": "Blind5656!",
+    "database": "exampledb",
     "host": "localhost",
     "dialect": "mysql",
     "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
   },
   "production": {
-    "username": "removed",
-    "user": "removed",
-    "password": "removed",
-    "database": "removed",
-    "host": "removed",
+    "username": "tonep7h6rltynou6",
+    "user": "tonep7h6rltynou6",
+    "password": "yyu9226gtxr0i4w3",
+    "database": "j10yauv99j80bfxy",
+    "host": "bqmayq5x95g1sgr9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql",
     "session_secret": "M142gsE%mq#2tazv^DGdGqv$D"
   },
