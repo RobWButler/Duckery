@@ -1,8 +1,10 @@
 // On load
 (function() {
-  // const HOST = location.origin.replace(/^http/, 'ws');
-  // const socket = io.connect(HOST);
-  const socket = io.connect('localhost:3000');
+  const HOST = location.origin.replace(/^http/, 'ws');
+  const socket = io.connect(HOST);
+
+  // local
+  // const socket = io.connect('localhost:3000');
 
   // Store DOM elements
   const chatForm = document.getElementById('chat-form');
