@@ -6,28 +6,35 @@ module.exports = passport => {
   // Used to auth login
   passport.use(
     new LocalStrategy(async function(username, password, done) {
-      const userQuery = await db.User.findOne({
+      await db.User.findOne({
         attributes: ['id', 'password'],
         where: { username }
-      });
+      })
+        .then(function(dataValues) {
+          const user = dataValues;
 
-      const user = userQuery.dataValues;
+          if (!user) {
+            return done(null, false);
+          }
 
-      if (!user) {
-        return done(null, false);
-      }
-
-      const hash = user.password.toString();
-      bcrypt.compare(password, hash, function(err, response) {
-        if (err) {
-          return console.error(`Error with bcrypt for user ${username}`, err);
-        }
-        if (response) {
-          return done(null, user.id);
-        } else {
-          done(null, false);
-        }
-      });
+          const hash = user.password.toString();
+          bcrypt.compare(password, hash, function(err, response) {
+            if (err) {
+              return console.error(
+                `Error with bcrypt for user ${username}`,
+                err
+              );
+            }
+            if (response) {
+              return done(null, user.id);
+            } else {
+              done(null, false);
+            }
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     })
   );
 
@@ -36,7 +43,11 @@ module.exports = passport => {
   });
 
   passport.deserializeUser(async function(userId, done) {
-    const userQuery = await db.User.findOne({ where: { id: userId } });
+    const userQuery = await db.User.findOne({ where: { id: userId } }).catch(
+      err => {
+        console.log(err);
+      }
+    );
     const user = userQuery && userQuery.dataValues;
     // Remove user password from object for security
     if (user) {
