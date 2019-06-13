@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 .DS_Store
 node_modules
 npm-debug.log
 .env
-=======
-node_modules/
-config/config.json
->>>>>>> 8d1a94b29caa0990550a428fc3e182031a66fc32
